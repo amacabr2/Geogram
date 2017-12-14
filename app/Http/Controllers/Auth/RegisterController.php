@@ -44,8 +44,16 @@ class RegisterController extends Controller {
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'pseudo' => 'required|string|max:255',
+            'lastName' => 'required',
+            'firstName' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
+            'state' => 'required',
+            'codePostal' => 'required|integer',
+            'adresse' => 'required',
+            'birthDate' => 'required|date',
+            'avatar' => 'image',
+            'couverture' => 'image',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -58,7 +66,21 @@ class RegisterController extends Controller {
      */
     protected function create(array $data) {
         return User::create([
-            'name' => $data['name'],
+            'pseudo' => $data['pseudo'],
+            'lastName' => $data['lastName'],
+            'firstName' => $data['firstName'],
+            'state' => $data['state'],
+            'codePostal' => $data['codePostal'],
+            'adresse' => $data['adresse'],
+            'birthDate' => $data['birthDay'],
+            'description' => $data['description'],
+            'avatar' => $data['avatar'],
+            'couverture' => $data['couverture'],
+            'job' => $data['job'],
+            'lienFacebook' => $data['lienFacebook'],
+            'lienInstagram' => $data['lienInstagram'],
+            'lienTwitter' => $data['lienTwitter'],
+            'lienGoogle' => $data['lienGoogle'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
