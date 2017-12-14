@@ -10,32 +10,36 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/now-ui-kit.css') }}">
-    <!--<link rel="stylesheet" href="{{ asset('css/style.css') }}">-->
-
     <!-- Fonts ans icons -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
-    <style>
-        body {
-            background-color: #1b1e21;
-        }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/now-ui-kit.css?v=1.1.0') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body>
-    <div id="app">
+
+<body class="sidebar-collapse">
+    <section id="app">
         @include('includes.nav')
 
         @yield('content')
-    </div>
+    </section>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/core/jquery.3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/core/pooper.min.js') }}"></script>
-    <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/core/jquery.3.2.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/core/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/core/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-switch.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/nouislider.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/now-ui-kit.js?v=1.1.0') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            nowuiKit.initSliders();
+        });
+    </script>
 </body>
 </html>
