@@ -108,9 +108,10 @@
                             <div class="team-player">
                                 <img src="" alt="" class="rounded-circle img-fluid img-raised">
                                 <h4 class="title">Sylvain Macabrey</h4>
-                                <p class="category text-primary">On sait pas</p>
+                                <p class="category text-primary">Développeur web & mobile</p>
                                 <p class="description">
-                                   Bof
+                                    Etudiant à l'IUT de Belfort-Montbélliard, je prépare une licence professionnelle Mobilité Numérique,
+                                    parcour TeProW pour devenir développeur web et mobile.
                                 </p>
                                 <a href="#a" class="btn btn-primary btn-icon btn-round"><i class="fa fa-twitter"></i></a>
                                 <a href="#a" class="btn btn-primary btn-icon btn-round"><i class="fa fa-instagram"></i></a>

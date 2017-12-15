@@ -53,6 +53,32 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('sexe') ? ' has-error' : '' }}">
+                            <label for="sexe" class="col-md-4 control-label">Sexe *</label>
+
+                            <div class="col-md-6">
+                                <div class="radio">
+                                    <input type="radio" name="sexe" id="sexe1" value="homme" checked>
+                                    <label for="sexe1">
+                                       Homme
+                                    </label>
+                                </div>
+
+                                <div class="radio">
+                                    <input type="radio" name="sexe" id="sexe2" value="femme">
+                                    <label for="sexe2">
+                                        Femme
+                                    </label>
+                                </div>
+
+                                @if ($errors->has('firstName'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('firstName') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">Email *</label>
 
@@ -113,7 +139,7 @@
                             <label for="birthDate" class="col-md-4 control-label">Date de naissance *</label>
 
                             <div class="col-md-6">
-                                <input id="birthDate" type="text" class="form-control" name="birthDate" required>
+                                <input id="birthDate" type="date" class="form-control" name="birthDate" required>
 
                                 @if ($errors->has('birthDate'))
                                     <span class="help-block">
