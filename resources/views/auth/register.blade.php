@@ -71,9 +71,9 @@
                                     </label>
                                 </div>
 
-                                @if ($errors->has('firstName'))
+                                @if ($errors->has('sexe'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('firstName') }}</strong>
+                                        <strong>{{ $errors->first('sexe') }}</strong>
                                     </span>
                                 @endif
                             </div>
