@@ -1,0 +1,13 @@
+.dropdown-item a {
+    text-decoration: none;
+    color: #222222 !important;
+}
+
+.dropdown-item:hover {
+    background-color: #f96332  !important;
+    font-weight: bold;
+}
+
+.dropdown-item a:hover {
+    color: #ffffff;
+}
