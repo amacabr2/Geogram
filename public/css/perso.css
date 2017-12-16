@@ -11,3 +11,7 @@
 .dropdown-item a:hover {
     color: #ffffff;
 }
+
+.alert {
+    border-radius: 30px;
+}
