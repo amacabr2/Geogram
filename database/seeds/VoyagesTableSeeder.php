@@ -15,7 +15,7 @@ class VoyagesTableSeeder extends Seeder {
     use HelperSeeder;
 
     /**
-     * Crée un certain nombre de voyages
+     * Crée un certain nombre de voyages en base de données
      */
     public function run() {
         Voyage::truncate();

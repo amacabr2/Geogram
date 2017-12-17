@@ -8,22 +8,24 @@ use Illuminate\Support\Facades\DB;
  * Created by PhpStorm.
  * User: antho
  * Date: 17/12/2017
- * Time: 13:52
+ * Time: 13:40
  */
 
-class AbonnesSeeder extends Seeder {
+class AbonnementsTableSeeder extends Seeder {
 
     use HelperSeeder;
 
+    /**
+     * Créer un certain nombre d'abonnements en base de données
+     */
     public function run() {
-        DB::table('abonnes')->delete();
-
+        DB::table('abonnements')->delete();
         $users = User::all();
 
         for ($i = 0; $i < 300; $i++) {
-            DB::table('abonnes')->insert([
+            DB::table('abonnements')->insert([
                 'user1_id' => $users[$i % sizeof($users)]->id,
-                'user2_id' => $users[($i + 2) % sizeof($users)]->id
+                'user2_id' => $users[($i + 1) % sizeof($users)]->id
             ]);
         }
     }
