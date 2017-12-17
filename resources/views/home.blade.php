@@ -33,6 +33,10 @@
                         <p>Votre file d'actualité est vide. Abonnez-vous à des utilisateurs pour voir leurs articles.</p>
                     @endforelse
 
+                    <div class="row">
+                        {{ $posts->render('vendor.pagination.bootstrap-4') }}
+                    </div>
+
                 </div>
             </div>
         </div>
