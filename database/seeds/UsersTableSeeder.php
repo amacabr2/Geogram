@@ -63,7 +63,7 @@ class UsersTableSeeder extends Seeder {
                 'firstName' => $firstName,
                 'sexe' => $randomSex ? "homme" : "femme",
                 'email' => $firstName . "." . $lastName . "@gmail.com",
-                'password' => $firstName . "_" . $lastName,
+                'password' => bcrypt( "azerty"),
                 'state' => $this->getFaker()->country,
                 'codePostal' => (int)$this->getFaker()->postcode,
                 'adresse' => $this->getFaker()->address,
@@ -75,7 +75,8 @@ class UsersTableSeeder extends Seeder {
                 'lienFacebook' => $facebook[$i % 5],
                 'lienInstagram' => $instagram[$i % 5],
                 'lienTwitter' => $twitter[$i % 5],
-                'lienGoogle' => $google[$i % 5]
+                'lienGoogle' => $google[$i % 5],
+                'remember_token' => str_random(60)
             ]);
         }
     }
