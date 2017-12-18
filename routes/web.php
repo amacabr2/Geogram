@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/profil/{id}', 'ProfilController@show')->name('profil')->where('id', '[0-9]+');
 });

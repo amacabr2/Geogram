@@ -30,7 +30,7 @@
 
                         <ul class="dropdown-menu">
                             <li class="dropdown-item">
-                                <a href="">Mon profil</a>
+                                <a href="{{ route('profil', ['id' =>  Auth::user()->id]) }}">Mon profil</a>
                             </li>
                             <li class="dropdown-item">
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
