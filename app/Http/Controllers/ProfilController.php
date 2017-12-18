@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use App\Voyage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,7 @@ class ProfilController extends Controller {
         $abonnements = $this->getAllAbonnementsOfUser();
         $abonnes = $this->getAllAbonnesOfUser();
         $articles = $this->getAllActiclesOfUser();
+        //$voyages = $this->getAllVoyagesOfArticles();
         return view('profil.profil', compact("id", "abonnements", "abonnes", "articles"));
     }
 
@@ -34,6 +36,11 @@ class ProfilController extends Controller {
 
     public function getAllActiclesOfUser() {
         return Post::join('users', 'users.id', '=', 'posts.user_id')
+            ->where('users.id', '=', Auth::user()->id)->get();
+    }
+
+    public function getAllVoyagesOfArticles() {
+        return Voyage::join('users', 'users.id', '=', 'voyages.user_id')
             ->where('users.id', '=', Auth::user()->id)->get();
     }
 }
