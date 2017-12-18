@@ -23,3 +23,14 @@
 .news {
     margin-top: 2em;
 }
+
+.alert {
+    position: absolute;
+    margin-top: 4em;
+    width: 100%;
+    z-index: 1000;
+}
+
+.invalid-feedback {
+    display: block;
+}

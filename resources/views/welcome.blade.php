@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-
     <section class="wrapper">
         <section class="page-header clear-filter" filter-color="orange">
             <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('img/header.jpg') }}')"></div>
 
             <div class="container">
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 <div class="content-center brand">
                     <img src="{{ asset('img/nom-logo.png') }}" alt="" class="n-logo">
                     <h1 class="h1-seo">{{ config('app.name', 'Laravel') }}</h1>
@@ -117,6 +122,42 @@
                                 <a href="#a" class="btn btn-primary btn-icon btn-round"><i class="fa fa-instagram"></i></a>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-contact-us text-center">
+            <div class="container">
+                <h2 class="title">Contactez-nous</h2>
+                <p class="description">Si t'as des questions, n'hésites pas ?</p>
+                <div class="row">
+                    <div class="col-lg-6 text-center col-md-8 ml-auto mr-auto">
+                        {!! Form::open(['route' => 'contact']) !!}
+                            <div class="input-group input-lg {!! $errors->has('name') ? 'is-invalid' : '' !!}">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons users_circle-08"></i>
+                                </span>
+                                {!! Form::text('name', null, ['class' => $errors->has('name') ? 'form-control is-invalid' : 'form-control', 'placeholder' => 'Ton nom...']) !!}
+                            </div>
+                            {!! $errors->first('name', '<div class="invalid-feedback">:message</div><br>') !!}
+
+                            <div class="input-group input-lg {!! $errors->has('email') ? 'is-invalid' : '' !!}">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons ui-1_email-85"></i>
+                                </span>
+                                {!! Form::email('email', null, ['class' => $errors->has('email') ? 'form-control is-invalid' : 'form-control', 'placeholder' => 'Email...']) !!}
+                            </div>
+                            {!! $errors->first('email', '<div class="invalid-feedback">:message</div><br>') !!}
+
+                            <div class="textarea-container {!! $errors->has('message') ? 'is-invalid' : '' !!}">
+                                {!! Form::textarea('message', null, ['class' => $errors->has('message') ? 'form-control is-invalid' : 'form-control', 'placeholder' => 'Message...']) !!}
+                                {!! $errors->first('message', '<div class="invalid-feedback">:message</div><br>') !!}
+                            </div>
+                            <div class="send-button">
+                                {!! Form::submit('Envoyer', ['class' => 'btn btn-primary btn-round btn-block btn-lg']) !!}
+                            </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

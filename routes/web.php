@@ -13,6 +13,8 @@
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
 
+Route::post('/contact', 'WelcomeController@contact')->name('contact');
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {

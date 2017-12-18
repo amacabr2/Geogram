@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
+use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Mail;
 
 class WelcomeController extends Controller {
 
@@ -13,5 +15,11 @@ class WelcomeController extends Controller {
      */
     public function index() {
         return view('welcome');
+    }
+
+    public function contact(ContactRequest $request) {
+        Mail::to('webmaster@geogram.com')->queue(new ContactMail($request->except('_token')));
+
+        return redirect()->route('welcome')->with('success', 'Votre mail a été envoyé, on vous répondra le plus vite possible');
     }
 }
