@@ -31,7 +31,7 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="articles">
-        Articles
+        @include('profil.includes.articles')
     </div>
 
     <div role="tabpanel" class="tab-pane" id="voyages">
