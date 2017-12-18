@@ -34,8 +34,12 @@ class LoginController extends Controller {
         $this->middleware('guest')->except('logout');
     }
 
-    public function username()
-    {
+    /**
+     * La connection se fait par rapport au pseudo
+     *
+     * @return string
+     */
+    public function username() {
         return 'pseudo';
     }
 }

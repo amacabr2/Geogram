@@ -18,23 +18,23 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane fade in active" id="information">
-        Information
+    <div role="tabpanel" class="tab-pane active" id="information">
+        @include('profil.includes.information')
     </div>
 
-    <div role="tabpanel" class="tab-pane fade" id="abonnes">
+    <div role="tabpanel" class="tab-pane" id="abonnes">
         Abonnes
     </div>
 
-    <div role="tabpanel" class="tab-pane fade" id="abonnements">
+    <div role="tabpanel" class="tab-pane" id="abonnements">
         Abonnements
     </div>
 
-    <div role="tabpanel" class="tab-pane fade" id="articles">
+    <div role="tabpanel" class="tab-pane" id="articles">
         Articles
     </div>
 
-    <div role="tabpanel" class="tab-pane fade" id="voyages">
+    <div role="tabpanel" class="tab-pane" id="voyages">
         Voyages
     </div>
 </div>
