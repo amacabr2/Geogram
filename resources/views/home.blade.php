@@ -50,10 +50,16 @@
                                         <h4> {{ $post->title }} </h4>
                                         <h5> Pays visité : {{ $post->state }} </h5>
                                         <p> {{ $post->content }} </p>
-                                        <a class="btn btn-primary" {{--href="{{route('posts.show', $post)}}"--}} >Voir le post</a>
                                     </div>
                                     <div class="card-footer">
-                                        <h5>Commentaire(s)</h5>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <h5>Commentaire(s)</h5>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a class="btn btn-primary" {{--href="{{route('posts.show', $post)}}"--}} >Voir le post</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

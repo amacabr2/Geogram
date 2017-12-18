@@ -18,9 +18,9 @@
 
                         @if($errors->any())
                             <div class="alert alert-danger">
-                                @if ($errors->has('email'))
+                                @if ($errors->has('pseudo'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('pseudo') }}</strong>
                                     </span>
                                 @endif
                                 @if ($errors->has('password'))
@@ -32,11 +32,11 @@
                         @endif
 
                         <div class="content">
-                            <div class="input-group form-group-no-border input-lg {{ $errors->has('email') ? 'is-invalid' : 'is-valid' }}">
+                            <div class="input-group form-group-no-border input-lg {{ $errors->has('pseudo') ? 'is-invalid' : 'is-valid' }}">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons users_circle-08"></i>
                                 </span>
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="pseudo" type="text" class="form-control" name="pseudo" value="{{ old('pseudo') }}" required autofocus>
                             </div>
 
                             <div class="input-group form-group-no-border input-lg {{ $errors->has('password') ? 'is-invalid' : 'is-valid' }}">
