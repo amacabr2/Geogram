@@ -15,12 +15,18 @@ class ProfilController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(int $id) {
-        $abonnements = $this->getAllAbonnements();
-        return view('profil.profil', compact("id", "abonnements"));
+        $abonnements = $this->getAllAbonnementsOfUser();
+        $abonnes = $this->getAllAbonnesOfUser();
+        return view('profil.profil', compact("id", "abonnements", "abonnes"));
     }
 
-    public function getAllAbonnements() {
+    public function getAllAbonnementsOfUser() {
         return User::join('abonnements', 'abonnements.user2_id', '=', 'users.id')
             ->where('abonnements.user1_id', '=', Auth::user()->id)->get();
+    }
+
+    public function getAllAbonnesOfUser() {
+        return User::join('abonnes', 'abonnes.user2_id', '=', 'users.id')
+            ->where('abonnes.user1_id', '=', Auth::user()->id)->get();
     }
 }
