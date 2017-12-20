@@ -21,7 +21,8 @@ class ProfilController extends Controller {
         $abonnes = $this->getAllAbonnesOfUser();
         $articles = $this->getAllActiclesOfUser();
         $voyages = $this->getAllVoyagesOfArticles();
-        return view('profil.profil', compact("id", "abonnements", "abonnes", "articles", "voyages"));
+        $user = User::findOrFail($id);
+        return view('profil.profil', compact("user", "abonnements", "abonnes", "articles", "voyages"));
     }
 
     public function getAllAbonnementsOfUser() {
@@ -42,4 +43,13 @@ class ProfilController extends Controller {
     public function getAllVoyagesOfArticles() {
         return Voyage::where('voyages.user_id', '=', Auth::user()->id)->get();
     }
+
+    public function countAbonnements() {
+
+    }
+
+    public function countAbonnes() {
+
+    }
+
 }
