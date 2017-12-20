@@ -29,11 +29,13 @@ class User extends Authenticatable {
     ];
 
     public function abonnes() {
-        return $this->belongsToMany('App\User');
+        //return $this->belongsToMany('App\Abonne');
+        return $this->hasMany('App\Abonne');
     }
 
     public function abonnements() {
-        return $this->belongsToMany('App\User');
+        //return $this->belongsToMany('App\Abonnement');
+        return $this->hasMany('App\Abonnement');
     }
 
     public function posts() {

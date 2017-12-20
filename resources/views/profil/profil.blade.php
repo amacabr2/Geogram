@@ -15,15 +15,15 @@
                     <div class="content">
                         <div class="social-description">
                             <h2>26</h2>
-                            <p>Comments</p>
+                            <p>Abonnements</p>
                         </div>
                         <div class="social-description">
                             <h2>26</h2>
-                            <p>Comments</p>
+                            <p>Abonnés</p>
                         </div>
                         <div class="social-description">
                             <h2>48</h2>
-                            <p>Bookmarks</p>
+                            <p>Articles</p>
                         </div>
                     </div>
                 </div>
