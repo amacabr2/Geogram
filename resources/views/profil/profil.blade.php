@@ -10,8 +10,8 @@
                     <div class="photo-container">
                         <img src="{{ asset('img/ryan.jpg') }}" alt="">
                     </div>
-                    <h3 class="title">Ryan Schein</h3>
-                    <p class="catagory">Photographer</p>
+                    <h3 class="title">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</h3>
+                    <p class="catagory">{{ Auth::user()->job }}</p>
                     <div class="content">
                         <div class="social-description">
                             <h2>26</h2>
