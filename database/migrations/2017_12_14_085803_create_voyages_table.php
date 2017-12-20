@@ -15,6 +15,7 @@ class CreateVoyagesTable extends Migration
     {
         Schema::create('voyages', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('state');
             $table->double('longitude');
             $table->double('latitude');

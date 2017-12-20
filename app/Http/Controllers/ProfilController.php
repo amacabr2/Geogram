@@ -20,8 +20,8 @@ class ProfilController extends Controller {
         $abonnements = $this->getAllAbonnementsOfUser();
         $abonnes = $this->getAllAbonnesOfUser();
         $articles = $this->getAllActiclesOfUser();
-        //$voyages = $this->getAllVoyagesOfArticles();
-        return view('profil.profil', compact("id", "abonnements", "abonnes", "articles"));
+        $voyages = $this->getAllVoyagesOfArticles();
+        return view('profil.profil', compact("id", "abonnements", "abonnes", "articles", "voyages"));
     }
 
     public function getAllAbonnementsOfUser() {
@@ -40,7 +40,6 @@ class ProfilController extends Controller {
     }
 
     public function getAllVoyagesOfArticles() {
-        return Voyage::join('users', 'users.id', '=', 'voyages.user_id')
-            ->where('users.id', '=', Auth::user()->id)->get();
+        return Voyage::where('voyages.user_id', '=', Auth::user()->id)->get();
     }
 }

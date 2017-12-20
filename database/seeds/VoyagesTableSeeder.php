@@ -29,7 +29,8 @@ class VoyagesTableSeeder extends Seeder {
                 'longitude' => $local['longitude'],
                 'latitude' => $local['latitude'],
                 'dateBegin' => $dates['begin'],
-                'dateEnd' => $dates['end']
+                'dateEnd' => $dates['end'],
+                'user_id' => $i + 1
             ]);
         }
     }
