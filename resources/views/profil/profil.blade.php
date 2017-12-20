@@ -14,15 +14,15 @@
                     <p class="catagory">{{ $user->job }}</p>
                     <div class="content">
                         <div class="social-description">
-                            <h2>26</h2>
+                            <h2>{{ count($abonnements) }}</h2>
                             <p>Abonnements</p>
                         </div>
                         <div class="social-description">
-                            <h2>26</h2>
+                            <h2> {{ count($abonnes) }} </h2>
                             <p>Abonnés</p>
                         </div>
                         <div class="social-description">
-                            <h2>48</h2>
+                            <h2> {{ count($articles) }} </h2>
                             <p>Articles</p>
                         </div>
                     </div>

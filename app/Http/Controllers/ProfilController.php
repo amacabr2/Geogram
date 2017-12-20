@@ -44,12 +44,4 @@ class ProfilController extends Controller {
         return Voyage::where('voyages.user_id', '=', Auth::user()->id)->get();
     }
 
-    public function countAbonnements() {
-
-    }
-
-    public function countAbonnes() {
-
-    }
-
 }
