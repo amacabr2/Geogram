@@ -53,8 +53,8 @@ class RegisterController extends Controller {
             'codePostal' => 'required|integer',
             'adresse' => 'required',
             'birthDate' => 'required|date',
-            'avatar' => 'sometime|nullable|image',
-            'couverture' => 'sometime|nullable|image',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg',
+            'couverture' => 'nullable|image|mimes:jpeg,png,jpg',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
