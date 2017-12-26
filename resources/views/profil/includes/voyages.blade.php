@@ -19,13 +19,13 @@
             @foreach($voyages as $voyage)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <th>{{ $voyage->state }}</th>
-                    <th>{{ $voyage->dateBegin }}</th>
-                    <th>{{ $voyage->dateEnd }}</th>
-                    <th>
+                    <td>{{ $voyage->state }}</td>
+                    <td>{{ $voyage->dateBegin }}</td>
+                    <td>{{ $voyage->dateEnd }}</td>
+                    <td>
                         <a class="btn btn-primary" {{--href="{{route('voyage.create')}}"--}} >Voir sur une carte</a>
                         <a class="btn btn-primary" href="{{route('voyage.edit', $voyage)}}" >Modifier le voyage</a>
-                    </th>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
