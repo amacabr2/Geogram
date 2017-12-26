@@ -22,3 +22,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profil/{id}', 'ProfilController@show')->name('profil')->where('id', '[0-9]+');
     Route::put('/users/{id}', 'UserController@update')->name('users.update')->where('id', '[0-9]+');
 });
+
+Route::group(['prefix' => 'voyage'], function () {
+    Route::post('/', 'VoyagesController@store')->name('voyage.store')->where('id', '[0-9]+');
+    Route::put('/{id}', 'VoyagesController@update')->name('voyage.update')->where('id', '[0-9]+');
+    Route::get('/create', 'VoyagesController@create')->name('voyage.create');
+    Route::get('/edit/{id}', 'VoyagesController@edit')->name('voyage.edit')->where('id', '[0-9]+');
+});
