@@ -18,8 +18,8 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/now-ui-kit.css?v=1.1.0') }}">
         <link rel="stylesheet" href="{{ asset('css/rotating-card.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/now-ui-kit.css?v=1.1.0') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/perso.css') }}">
     </head>
