@@ -254,7 +254,7 @@
                                                   class="form-control @if($errors->has('lienFacebook')) {{ "is-invalid" }}@endif"
                                                   name="lienFacebook" value="{{ old('lienFacebook') }}">
 
-                                           @if ($errors->has('job'))
+                                           @if ($errors->has('lienFacebook'))
                                                <span class="invalid-feedback">
                                                <strong>{{ $errors->first('lienFacebook') }}</strong>
                                            </span>
@@ -359,7 +359,6 @@
             <img src="{{ asset('img/bg5.jpg') }}" alt="" class="img-fluid img-raised img-apparition">
             <img src="{{ asset('img/bg6.jpg') }}" alt="" class="img-fluid img-raised img-apparition">
         </div>
-
     </div>
 </section>
 @endsection

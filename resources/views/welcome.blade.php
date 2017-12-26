@@ -7,7 +7,7 @@
 
             <div class="container">
                 @if(session('success'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-index">
                         {{ session('success') }}
                     </div>
                 @endif
@@ -138,7 +138,7 @@
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons users_circle-08"></i>
                                 </span>
-                                {!! Form::text('name', null, ['class' => $errors->has('name') ? 'form-control is-invalid' : 'form-control', 'placeholder' => 'Ton nom...']) !!}
+                                {!! Form::text('name', Auth::check() ? Auth::user()->pseudo : null, ['class' => $errors->has('name') ? 'form-control is-invalid' : 'form-control', 'placeholder' => 'Ton nom...']) !!}
                             </div>
                             {!! $errors->first('name', '<div class="invalid-feedback">:message</div><br>') !!}
 
@@ -146,7 +146,7 @@
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons ui-1_email-85"></i>
                                 </span>
-                                {!! Form::email('email', null, ['class' => $errors->has('email') ? 'form-control is-invalid' : 'form-control', 'placeholder' => 'Email...']) !!}
+                                {!! Form::email('email', Auth::check() ? Auth::user()->email : null, ['class' => $errors->has('email') ? 'form-control is-invalid' : 'form-control', 'placeholder' => 'Email...']) !!}
                             </div>
                             {!! $errors->first('email', '<div class="invalid-feedback">:message</div><br>') !!}
 

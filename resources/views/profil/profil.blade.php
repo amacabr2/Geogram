@@ -40,13 +40,13 @@
                     <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Instagram">
                         <i class="fa fa-instagram"></i>
                     </a>
-
-                    @if (Auth::id() == $user->id )
-                        @include('profil.includes.administration')
-                    @else
-                        @include('profil.includes.presentation')
-                    @endif
                 </div>
+
+                @if (Auth::id() == $user->id )
+                    @include('profil.includes.administration')
+                @else
+                    @include('profil.includes.presentation')
+                @endif
             </div>
         </section>
     </section>
