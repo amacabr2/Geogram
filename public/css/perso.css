@@ -34,3 +34,7 @@
 .invalid-feedback {
     display: block;
 }
+
+#articles {
+    text-align: left;
+}

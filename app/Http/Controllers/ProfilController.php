@@ -22,6 +22,7 @@ class ProfilController extends Controller {
         $articles = $this->getAllActiclesOfUser();
         $voyages = $this->getAllVoyagesOfArticles();
         $user = User::findOrFail($id);
+        //dd($articles);
         return view('profil.profil', compact("user", "abonnements", "abonnes", "articles", "voyages"));
     }
 
