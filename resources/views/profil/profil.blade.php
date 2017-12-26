@@ -56,6 +56,7 @@
     <script type="text/javascript">
         (function($){
             $('body').addClass('profile-page')
+            $('.card-flip').classList.toggle("flip");
         })(jQuery);
     </script>
 @endsection
