@@ -56,7 +56,9 @@
     <script type="text/javascript">
         (function($){
             $('body').addClass('profile-page')
-            $('.card-flip').classList.toggle("flip");
+            $(".card-rotative").flip({
+                trigger: 'hover'
+            });
         })(jQuery);
     </script>
 @endsection

@@ -41,7 +41,7 @@
         <script type="text/javascript" src="{{ asset('js/plugins/nouislider.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/now-ui-kit.js?v=1.1.0') }}"></script>
-        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.flip.min.js') }}"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
