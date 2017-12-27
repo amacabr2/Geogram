@@ -27,5 +27,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{id}', 'VoyagesController@update')->name('voyage.update')->where('id', '[0-9]+');
         Route::get('/create', 'VoyagesController@create')->name('voyage.create');
         Route::get('/edit/{id}', 'VoyagesController@edit')->name('voyage.edit')->where('id', '[0-9]+');
+        Route::get('/show/{id}', 'VoyagesController@show')->name('voyage.show')->where('id', '[0-9]+');
     });
 });

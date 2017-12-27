@@ -1,7 +1,22 @@
-<div class="container" style="margin-top: 2em;">
+@extends('layouts.app')
 
-    <h1> Créer un voyage </h1>
+@section('content')
 
-    @include('voyage.formVoyage')
+    <div class="container" style="margin-top: 5.5em;">
 
-</div>
+        <h1> Créer un voyage </h1>
+
+        @include('voyage.formVoyage')
+
+    </div>
+
+@endsection
+
+@section('javascript')
+    <script type="text/javascript">
+        const $nav = $('nav');
+        $nav.removeClass('navbar-transparent');
+        $nav.removeAttr('color-on-scroll')
+    </script>
+@endsection
+
