@@ -9,7 +9,7 @@
                 <div class="content-center">
                     <div class="photo-container">
                         <img
-                            src="{{ $user->avatar == "avatar" ? ($user->sexe == "homme" ? asset('/img/profil/homme.png') : asset('/img/profil/femme.png')) : asset('uploads/' . $user->id . '/avatar/' . $user->avatar . '_150x150.png') }}"
+                            src="{{ $user->avatar == null ? ($user->sexe == "homme" ? asset('/img/profil/homme.png') : asset('/img/profil/femme.png')) : asset('uploads/' . $user->id . '/avatar/' . $user->avatar . '_150x150.png') }}"
                             alt=""
                         >
                     </div>

@@ -55,7 +55,7 @@
 
                         <div class="pull-left">
                             <div class="checkbox">
-                                <label>
+                                <label style="color: #ffffff">
                                     <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                     Se rappelez de moi
                                 </label>

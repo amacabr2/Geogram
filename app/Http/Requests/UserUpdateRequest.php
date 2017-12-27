@@ -31,14 +31,8 @@ class UserUpdateRequest extends FormRequest {
             'codePostal' => 'required|integer',
             'adresse' => 'required',
             'birthDate' => 'required|date',
-            'description' => 'required',
             'avatar' => 'image|sometimes:nullable',
             'couverture' => 'image|sometimes:nullable',
-            'job' => 'required',
-            'lienFacebook' => 'required',
-            'lienInstagram' => 'required',
-            'lienTwitter' => 'required',
-            'lienGoogle' => 'required',
         ];
     }
 
@@ -60,14 +54,8 @@ class UserUpdateRequest extends FormRequest {
             'adresse.required' => 'Le champ :attribute est requis',
             'birthDate.required' => 'Le champ :attribute est requis',
             'birthDate.date' => 'Le champ :attribute doit être une date',
-            'description.required' => 'Le champ :attribute est requis',
             'avatar.image' => 'Le champ :attribute peut avoir comme extension .png, .jpg, .jpeg',
             'couverture.image' => 'Le champ :attribute peut avoir comme extension .png, .jpg, .jpeg',
-            'job' => 'Le champ :attribute est requis',
-            'lienFacebook.required' => 'Le champ :attribute est requis',
-            'lienInstagram.required' => 'Le champ :attribute est requis',
-            'lienTwitter.required' => 'Le champ :attribute est requis',
-            'lienGoogle.required' => 'Le champ :attribute est requis',
         ];
     }
 }

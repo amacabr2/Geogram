@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Utils\UploadImageHelper;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\ImageManager;
 
 class RegisterController extends Controller {
+
+    use UploadImageHelper;
 
     /*
     |--------------------------------------------------------------------------
@@ -81,6 +80,8 @@ class RegisterController extends Controller {
             'adresse' => $data['adresse'],
             'birthDate' => $data['birthDate'],
             'description' => $data['description'],
+            'avatar' => null,
+            'couverture' => null,
             'job' => $data['job'],
             'lienFacebook' => $data['lienFacebook'],
             'lienInstagram' => $data['lienInstagram'],
@@ -90,33 +91,15 @@ class RegisterController extends Controller {
             'password' => bcrypt($data['password']),
         ]);
 
-        $user->avatar = (!empty($data['avatar'])) ? $this->uploadFile($data['avatar'], 'avatar', $user)  : "avatar";
-        $user->couverture =(!empty($data['couverture'])) ? $this->uploadFile($data['couverture'], 'couverture', $user)  : "couverture";
-        $user->save();
+        if (!empty($data['avatar'])) {
+            $this->uploadFile($data['avatar'], 'avatar', $user);
+        }
+        if (!empty($data['couverture'])) {
+            $this->uploadFile($data['couverture'], 'couverture', $user);
+        }
 
         return $user;
     }
 
-    /**
-     * Upload l'avatar et la couverture
-     *
-     * @param UploadedFile $uploadedFile
-     * @param string $typeImage
-     * @param User $user
-     * @return \Symfony\Component\HttpFoundation\File\File
-     */
-    private function uploadFile(UploadedFile $uploadedFile, string $typeImage, User $user) {
-        $file = $uploadedFile->move(public_path('uploads/' . $user->id ."/{$typeImage}"), $uploadedFile->getClientOriginalName());
-        $formats = ($typeImage == 'avatar') ? [[150, 150], [500, 500]] : [[1000, 650], [2000, 1300]];
-        $filename = pathinfo($file, PATHINFO_FILENAME);
 
-        foreach ($formats as $format) {
-            $manager = new ImageManager(['driver' => 'gd']);
-            $manager->make($file->getRealPath())
-                ->fit($format[0], $format[1])
-                ->save(public_path( "uploads/" . $user->id ."/{$typeImage}") . "/{$filename}_{$format[0]}x{$format[1]}.png");
-        }
-
-        return $filename;
-    }
 }
