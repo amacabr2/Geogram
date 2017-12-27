@@ -3,12 +3,15 @@
 @section('content')
     <section class="wrapper">
         <section class="page-header page-header-small" filter-color="orange">
-            <div class="page-header-image" data-parallax="true" style="background-image: url({{ asset('img/bg5.jpg') }})"></div>
+            <div class="page-header-image" data-parallax="true" style="background-image: url({{ $user->couverture == "couverture" ? asset('img/bg5.jpg') : asset('uploads/' . $user->id . '/couverture/' . $user->couverture . '_2000x1300.png')}})"></div>
 
             <div class="container">
                 <div class="content-center">
                     <div class="photo-container">
-                        <img src="{{ asset('img/ryan.jpg') }}" alt="">
+                        <img
+                            src="{{ $user->avatar == "avatar" ? ($user->sexe == "homme" ? asset('/img/profil/homme.png') : asset('/img/profil/femme.png')) : asset('uploads/' . $user->id . '/avatar/' . $user->avatar . '_150x150.png') }}"
+                            alt=""
+                        >
                     </div>
                     <h3 class="title">{{ $user->firstName }} {{ $user->lastName }}</h3>
                     <p class="catagory">{{ $user->job }}</p>
