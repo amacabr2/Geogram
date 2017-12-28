@@ -39,9 +39,11 @@
         <script type="text/javascript" src="{{ asset('js/core/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-switch.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/plugins/nouislider.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/plugins/jquery.flip.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-filestyle.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/now-ui-kit.js?v=1.1.0') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.flip.min.js') }}"></script>
+
 
         <script type="text/javascript">
             $(document).ready(function() {

@@ -39,12 +39,12 @@ class UserController extends Controller {
         $user->save();
 
         if (!empty($request->file('avatar'))) {
-            $this->uploadFile($request->file('avatar'), 'avatar', $user);
+            $this->uploadFile($request->file('avatar'), 'avatar', $user, true);
         }
         if (!empty($request->file('couverture'))) {
-            $this->uploadFile($request->file('couverture'), 'couverture', $user);
+            $this->uploadFile($request->file('couverture'), 'couverture', $user, true);
         }
 
-        return redirect()->route('profil', ['id' => Auth::id()])->with('success', 'Vos informations ont été modifiées avec succès');
+        return redirect()->route('profil', ['id' => Auth::id()])->with('success', 'Vos informations ont été modifiées avec succès, pour les images attendez un peu puis rafraichissez la page.');
     }
 }

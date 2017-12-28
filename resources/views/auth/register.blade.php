@@ -219,8 +219,8 @@
 
                                        <div class="col-md-12">
                                            <input id="avatar" type="file"
-                                                  class="form-control @if($errors->has('avatar')) {{ "is-invalid" }}@endif"
-                                                  name="avatar" value="{{ old('avatar') }}">
+                                                  class="filestyle @if($errors->has('avatar')) {{ "is-invalid" }}@endif"
+                                                  name="avatar" value="{{ old('avatar') }}" data-text="Avatar">
 
                                            @if ($errors->has('avatar'))
                                                <span class="invalid-feedback">
@@ -235,8 +235,8 @@
 
                                        <div class="col-md-12">
                                            <input id="couverture" type="file"
-                                                  class="form-control @if($errors->has('couverture')) {{ "is-invalid" }}@endif"
-                                                  name="couverture" value="{{ old('couverture') }}">
+                                                  class="filestyle @if($errors->has('couverture')) {{ "is-invalid" }}@endif"
+                                                  name="couverture" value="{{ old('couverture') }}" data-text="Couverture">
 
                                            @if ($errors->has('couverture'))
                                                <span class="invalid-feedback">

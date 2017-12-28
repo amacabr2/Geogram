@@ -147,7 +147,7 @@
             <div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}">
                 {!! Form::label('avatar', 'Image de profil', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-12">
-                    {!! Form::file('avatar', ['class' => $errors->has('avatar') ? 'form-control is-invalid' : 'form-control']) !!}
+                    {!! Form::file('avatar', ['class' => $errors->has('avatar') ? 'filestyle is-invalid' : 'filestyle']) !!}
                     @if ($errors->has('avatar'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('avatar') }}</strong>
@@ -159,7 +159,7 @@
             <div class="form-group {{ $errors->has('couverture') ? 'has-error' : '' }}">
                 {!! Form::label('couverture', 'Couverture', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-12">
-                    {!! Form::file('couverture', ['class' => $errors->has('couverture') ? 'form-control is-invalid' : 'form-control']) !!}
+                    {!! Form::file('couverture', ['class' => $errors->has('couverture') ? 'filestyle is-invalid' : 'filestyle']) !!}
                     @if ($errors->has('couverture'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('couverture') }}</strong>
