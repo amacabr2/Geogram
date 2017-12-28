@@ -69,4 +69,5 @@ class VoyagesController extends Controller {
         $voyage->delete();
         return redirect(route('profil', Auth::user()->id))->withSuccess('Le voyage à été supprimé');
     }
+
 }
