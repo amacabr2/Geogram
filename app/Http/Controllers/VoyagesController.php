@@ -63,4 +63,10 @@ class VoyagesController extends Controller {
         $voyage->update($data);
         return redirect(route('profil', Auth::user()->id))->withSuccess('Le voyage à été modifié');
     }
+
+    public function delete(int $id) {
+        $voyage = Voyage::findOrFail($id);
+        $voyage->delete();
+        return redirect(route('profil', Auth::user()->id))->withSuccess('Le voyage à été supprimé');
+    }
 }

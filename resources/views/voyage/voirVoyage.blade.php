@@ -24,6 +24,24 @@
                     <p>Pays visité : {{ $voyage->state }}.</p>
                 </div>
 
+                @if(Auth::user()->id == $voyage->user_id)
+
+                    <div class="row">
+                        <a class="btn btn-primary" href="{{route('voyage.edit', $voyage)}}" style="width: 100%">Modifier le voyage</a>
+                    </div>
+
+                    <div class="row">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteVoyageModal" style="width: 100%">
+                            Supprimer le voyage
+                        </button>
+                    </div>
+
+                @endif
+
+                <div class="row">
+                    <a class="btn btn-primary" href="{{route('profil', Auth::user()->id)}}" style="width: 100%">Retour au profil</a>
+                </div>
+
             </div>
 
             <div class="col-md-9">
@@ -32,12 +50,32 @@
 
             </div>
 
+            <div id="deleteVoyageModal" class="modal fade">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Suppression du voyage</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Voulez vous vraiment supprimer ce voyage ? <br/>
+                                Les posts correspodants à ce voyage seront supprimés avec.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-primary" href="{{route('voyage.delete', $voyage)}}" style="width: 100%">Suppression</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
 
-        <div class="row">
-            <a class="btn btn-primary" href="{{route('profil', Auth::user()->id)}}" >Retour au profil</a>
-        </div>
 
     </div>
 

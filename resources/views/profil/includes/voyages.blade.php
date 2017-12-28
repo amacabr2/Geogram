@@ -23,8 +23,7 @@
                     <td>{{ $voyage->dateBegin }}</td>
                     <td>{{ $voyage->dateEnd }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{route('voyage.show', $voyage)}}" >Voir sur une carte</a>
-                        <a class="btn btn-primary" href="{{route('voyage.edit', $voyage)}}" >Modifier le voyage</a>
+                        <a class="btn btn-primary" href="{{route('voyage.show', $voyage)}}" style="width: 100%">Voir sur une carte</a>
                     </td>
                 </tr>
             @endforeach
