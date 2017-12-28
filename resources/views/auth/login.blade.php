@@ -54,17 +54,14 @@
                         </div>
 
                         <div class="pull-left">
-                            <div class="checkbox">
-                                <label style="color: #ffffff">
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    Se rappelez de moi
-                                </label>
-                            </div>
+                            <h6>
+                                <a href="{{ route('register') }}" class="link">Créer un compte ?</a>
+                            </h6>
                         </div>
 
                         <div class="pull-right">
                             <h6>
-                                <a href="{{ route('register') }}" class="link">Créer un compte ?</a>
+                                <a href="{{ route('password.request') }}" class="link">Oubli du mot de passe ?</a>
                             </h6>
                         </div>
 
