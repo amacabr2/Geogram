@@ -16,6 +16,8 @@ class CreateAbonnementsTable extends Migration
         Schema::create('abonnements', function (Blueprint $table) {
             $table->integer('user1_id');
             $table->integer('user2_id');
+            $table->foreign('user1_id')->references('id')->on('users');
+            $table->foreign('user2_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

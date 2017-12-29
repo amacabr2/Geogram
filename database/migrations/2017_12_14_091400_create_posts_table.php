@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->integer('voyage_id')->unsigned()->index();
             $table->timestamps();
             $table->foreign('voyage_id')->references('id')->on('voyages')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +32,10 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
+        Schema::table('posts', function(Blueprint $table) {
+            $table->dropForeign('posts_voyage_id_foreign');
+        });
+
         Schema::dropIfExists('posts');
     }
 }
