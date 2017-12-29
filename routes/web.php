@@ -30,4 +30,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/show/{id}', 'VoyagesController@show')->name('voyage.show')->where('id', '[0-9]+');
         Route::get('/delete/{id}', 'VoyagesController@delete')->name('voyage.delete')->where('id', '[0-9]+');
     });
+
+    Route::group(['prefix' => 'posts'], function () {
+        Route::post('/', 'PostsController@store')->name('posts.store')->where('id', '[0-9]+');
+        Route::put('/{id}', 'PostsController@update')->name('posts.update')->where('id', '[0-9]+');
+        Route::get('/create', 'PostsController@create')->name('posts.create');
+        Route::get('/edit/{id}', 'PostsController@edit')->name('posts.edit')->where('id', '[0-9]+');
+        Route::get('/show/{id}', 'PostsController@show')->name('posts.show')->where('id', '[0-9]+');
+        Route::get('/delete/{id}', 'PostsController@delete')->name('posts.delete')->where('id', '[0-9]+');
+    });
 });

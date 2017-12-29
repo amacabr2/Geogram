@@ -21,8 +21,8 @@ class VoyagesController extends Controller {
     public function store(Request $request) {
         $this->validate($request, [
             'state' => 'required',
-            'longitude' => 'required',
-            'latitude' => 'required',
+            'longitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
             'dateBegin' => 'required',
             'dateEnd' => 'required'
         ]);
@@ -47,8 +47,8 @@ class VoyagesController extends Controller {
         $voyage = Voyage::findOrFail($id);
         $this->validate($request, [
             'state' => 'required',
-            'longitude' => 'required',
-            'latitude' => 'required',
+            'longitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
             'dateBegin' => 'required',
             'dateEnd' => 'required'
         ]);
