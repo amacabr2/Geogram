@@ -29,7 +29,13 @@ if($post->id) {
         </div>
         <div class="form-group">
             {!! Form::label('contenu', 'Contenu de l\'article') !!}
-
+            {!! Form::textarea('contenu', $post->content, [
+                'class' => 'form-control',
+                'id' => 'editor',
+                'data-id' => '{{ $post->id }}' ,
+                'data-type' => '{{ get_class($post) }}',
+                'data-url' => '{{ route(\'atachements.store\') }}'
+            ]) !!}
         </div>
 
         @if($post->id)
@@ -40,3 +46,9 @@ if($post->id) {
         <a class="btn btn-primary" href="{{route('profil', Auth::user()->id)}}" >Annuler</a>
     {!! Form::close() !!}
 </div>
+
+@section('javascript')
+    <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/editeur.js') }}"></script>
+@endsection

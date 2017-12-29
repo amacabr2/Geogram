@@ -15,4 +15,8 @@ class Post extends Model {
     public function voyage() {
         return $this->belongsTo('App\Voyage');
     }
+
+    public function attachements() {
+        return $this->morphMany(Attachement::class, 'attachable');
+    }
 }
