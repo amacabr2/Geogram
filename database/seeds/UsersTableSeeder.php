@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Created by PhpStorm.
@@ -18,7 +19,7 @@ class UsersTableSeeder extends Seeder {
      * Créer un certain nombre d'utilisateurs en base de données
      */
     public function run() {
-        User::truncate();
+        DB::table('users')->delete();
 
         $facebook = [
             'https://www.facebook.com/nutellafrance/?ref=br_rs&brand_redir=78933666629',

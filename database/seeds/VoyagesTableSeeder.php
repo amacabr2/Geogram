@@ -2,6 +2,7 @@
 
 use App\Voyage;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Created by PhpStorm.
@@ -18,7 +19,7 @@ class VoyagesTableSeeder extends Seeder {
      * Crée un certain nombre de voyages en base de données
      */
     public function run() {
-        Voyage::truncate();
+        DB::table('voyages')->delete();
 
         for ($i = 0; $i < 84; $i++) {
             $local = $this->getLocation($i % 42);

@@ -4,6 +4,7 @@ use App\Commentaire;
 use App\Post;
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Created by PhpStorm.
@@ -20,7 +21,7 @@ class CommentairesTableSeeder extends Seeder {
      * Créer un certain nombre de commentaires en base de données
      */
     public function run() {
-        Commentaire::truncate();
+        DB::table('commentaires')->delete();
 
         $users = User::all();
         $posts = Post::all();

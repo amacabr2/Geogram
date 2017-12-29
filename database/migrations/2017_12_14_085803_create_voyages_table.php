@@ -15,7 +15,7 @@ class CreateVoyagesTable extends Migration
     {
         Schema::create('voyages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->string('state');
             $table->double('longitude');
             $table->double('latitude');
@@ -33,6 +33,10 @@ class CreateVoyagesTable extends Migration
      */
     public function down()
     {
+        Schema::table('voyages', function(Blueprint $table) {
+            $table->dropForeign('voyages_user_id_foreign');
+        });
+
         Schema::dropIfExists('voyages');
     }
 }

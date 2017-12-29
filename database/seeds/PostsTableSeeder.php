@@ -4,6 +4,7 @@ use App\Post;
 use App\User;
 use App\Voyage;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Created by PhpStorm.
@@ -20,7 +21,7 @@ class PostsTableSeeder extends Seeder {
      * Créer un certain nombre de posts en base de données
      */
     public function run() {
-        Post::truncate();
+        DB::table('posts')->delete();
 
         $users = User::all();
         $voyages = Voyage::all();

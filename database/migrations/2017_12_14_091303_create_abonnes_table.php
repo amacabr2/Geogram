@@ -14,8 +14,8 @@ class CreateAbonnesTable extends Migration
     public function up()
     {
         Schema::create('abonnes', function (Blueprint $table) {
-            $table->integer('user1_id');
-            $table->integer('user2_id');
+            $table->integer('user1_id')->unsigned();
+            $table->integer('user2_id')->unsigned();
             $table->foreign('user1_id')->references('id')->on('users');
             $table->foreign('user2_id')->references('id')->on('users');
             $table->timestamps();
@@ -29,6 +29,14 @@ class CreateAbonnesTable extends Migration
      */
     public function down()
     {
+        Schema::table('abonnes', function(Blueprint $table) {
+            $table->dropForeign('abonnes_user1_id_foreign');
+        });
+
+        Schema::table('abonnes', function(Blueprint $table) {
+            $table->dropForeign('abonnes_user2_id_foreign');
+        });
+
         Schema::dropIfExists('abonnes');
     }
 }

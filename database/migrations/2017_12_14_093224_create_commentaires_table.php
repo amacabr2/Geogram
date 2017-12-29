@@ -16,10 +16,10 @@ class CreateCommentairesTable extends Migration
         Schema::create('commentaires', function (Blueprint $table) {
             $table->increments('id');
             $table->text('content');
-            $table->integer('user_id');
-            $table->integer('post_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('post_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,14 @@ class CreateCommentairesTable extends Migration
      */
     public function down()
     {
+        Schema::table('commentaires', function(Blueprint $table) {
+            $table->dropForeign('commentaires_user_id_foreign');
+        });
+
+        Schema::table('commentaires', function(Blueprint $table) {
+            $table->dropForeign('commentaires_post_id_foreign');
+        });
+
         Schema::dropIfExists('commentaires');
     }
 }

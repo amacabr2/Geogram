@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->text('content');
             $table->integer('voyage_id')->unsigned()->index();
             $table->timestamps();
@@ -34,6 +34,10 @@ class CreatePostsTable extends Migration
     {
         Schema::table('posts', function(Blueprint $table) {
             $table->dropForeign('posts_voyage_id_foreign');
+        });
+
+        Schema::table('posts', function(Blueprint $table) {
+            $table->dropForeign('posts_user_id_foreign');
         });
 
         Schema::dropIfExists('posts');
