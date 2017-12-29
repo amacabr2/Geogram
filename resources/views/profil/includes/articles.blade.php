@@ -1,6 +1,6 @@
 <div class="row">
     <p> Ajouter un nouvel article ici : </p>
-    <a class="btn btn-primary" href="{{route('posts.create')}}">Nouveau voyage</a>
+    <a class="btn btn-primary" href="{{route('post.create')}}">Nouvel article</a>
 </div>
 
 <div class="row">

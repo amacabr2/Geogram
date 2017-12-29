@@ -42,10 +42,9 @@ if($voyage->id) {
 
         @if($voyage->id)
             {!! Form::submit('Modifier', ['class' => 'btn btn-primary']) !!}
-            <a class="btn btn-primary" href="{{route('profil', Auth::user()->id)}}" >Annuler</a>
         @else
             {!! Form::submit('Créer', ['class' => 'btn btn-primary']) !!}
-            <a class="btn btn-primary" href="{{route('profil', Auth::user()->id)}}" >Annuler</a>
         @endif
+        <a class="btn btn-primary" href="{{route('profil', Auth::user()->id)}}" >Annuler</a>
     {!! Form::close() !!}
 </div>

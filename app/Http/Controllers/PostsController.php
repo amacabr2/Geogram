@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Voyage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller {
 
@@ -14,7 +16,8 @@ class PostsController extends Controller {
 
     public function create() {
         $post = new Post();
-        return view('post.createPost', compact('post'));
+        $voyages = Voyage::where('voyages.user_id', '=', Auth::user()->id)->pluck('state', 'id');
+        return view('post.createPost', compact('post', 'voyages'));
     }
 
     public function store(Request $request) {
@@ -35,7 +38,8 @@ class PostsController extends Controller {
 
     public function edit(int $id) {
         $post = Post::findOrFail($id);
-        return view('post.editPost', compact('post'));
+        $voyages = Voyage::pluck('title', 'id');
+        return view('post.editPost', compact('post', 'voyages'));
     }
 
     public function update(int $id, Request $request) {
