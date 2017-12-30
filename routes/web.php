@@ -19,10 +19,16 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/profil/{id}', 'ProfilController@show')->name('profil')->where('id', '[0-9]+');
     Route::put('/users/{id}', 'UserController@update')->name('users.update')->where('id', '[0-9]+');
-    Route::get('/profil/{id}/abonnements/', 'ProfilController@abonnements')->name('profil.abonnements')->where(['id' => '[0-9]+']);
-    Route::get('/profil/{id}/abonnes/', 'ProfilController@abonnes')->name('profil.abonnes')->where(['id' => '[0-9]+']);
+
+    Route::group(['prefix' => 'profil'], function () {
+        Route::get('/{id}', 'ProfilController@show')->name('profil')->where('id', '[0-9]+');
+        Route::get('/{id}/abonnements/', 'ProfilController@abonnements')->name('profil.abonnements')->where(['id' => '[0-9]+']);
+        Route::get('/{id}/abonnes/', 'ProfilController@abonnes')->name('profil.abonnes')->where(['id' => '[0-9]+']);
+        Route::get('/{id}/new-abonnement', 'ProfilController@addAbonnement')->name('profil.new-abonnement')->where(['id' => '[0-9]+']);
+        Route::get('/{id}/delete-abonnement', 'ProfilController@deleteAbonnement')->name('profil.delete-abonnement')->where(['id' => '[0-9]+']);
+    });
+
 
     Route::group(['prefix' => 'voyages'], function () {
         Route::post('/', 'VoyagesController@store')->name('voyage.store')->where('id', '[0-9]+');

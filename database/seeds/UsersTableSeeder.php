@@ -59,7 +59,7 @@ class UsersTableSeeder extends Seeder {
             $lastName = $this->getFaker()->lastName;
 
             User::create([
-                'pseudo' => $this->getFaker()->userName,
+                'pseudo' => "$firstName.$lastName",
                 'lastName' => $lastName,
                 'firstName' => $firstName,
                 'sexe' => $randomSex ? "homme" : "femme",

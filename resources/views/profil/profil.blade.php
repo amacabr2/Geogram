@@ -36,7 +36,13 @@
         <section class="section">
             <div class="container">
                 <div class="button-container">
-                    <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
+                    @if(Auth::id() != $user->id)
+                        @if($isAbonne)
+                            <a href="{{ route('profil.delete-abonnement', ['id' => $user->id]) }}" class="btn btn-primary btn-round btn-lg">Se désabonner</a>
+                        @else
+                            <a href="{{ route('profil.new-abonnement', ['id' => $user->id]) }}" class="btn btn-primary btn-round btn-lg">S'abonner</a>
+                        @endif
+                    @endif
                     <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
                         <i class="fa fa-twitter"></i>
                     </a>
