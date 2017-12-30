@@ -3,7 +3,7 @@
 @section('content')
     <section class="wrapper">
         <section class="page-header page-header-small" filter-color="orange">
-            <div class="page-header-image" data-parallax="true" style="background-image: url({{ $user->couverture == "couverture" ? asset('img/bg5.jpg') : asset('uploads/' . $user->id . '/couverture/' . $user->couverture . '_2000x1300.png')}})"></div>
+            <div class="page-header-image" data-parallax="true" style="background-image: url({{ $user->couverture == null ? asset('img/bg5.jpg') : asset('uploads/' . $user->id . '/couverture/' . $user->couverture . '_2000x1300.png')}})"></div>
 
             <div class="container">
                 <div class="content-center">
@@ -58,45 +58,58 @@
 @section('javascript')
     <script type="text/javascript">
         (function($){
-            $('body').addClass('profile-page')
-            $(".card-rotative").flip({
-                trigger: 'hover'
-            });
+            let abonnesOrAbonnements;
 
-            // $(window).on('hashchange', _ => {
-            //     if (window.location.hash) {
-            //         let page = window.location.hash.replace('#', '')
-            //         if (page === Number.NaN || page <= 0) {
-            //             return false
-            //         } else {
-            //             getDataAbonnements(page);
-            //         }
-            //     }
-            // })
+            $('body').addClass('profile-page')
+
+            $(window).on('hashchange', _ => {
+                if (window.location.hash) {
+                    let page = window.location.hash.replace('#', '')
+                    if (page === Number.NaN || page <= 0) {
+                        return false
+                    } else {
+                        getData(page);
+                    }
+                }
+            })
 
             $('#btnAbonnements').on('click', (event) => {
                 event.preventDefault()
-                getDataAbonnements(1);
+                abonnesOrAbonnements = "abonnements"
+                getData(1, abonnesOrAbonnements);
             })
 
-            $('.pagination .page-item a').on('click', (event) => {
+            $('#btnAbonnes').on('click', (event) => {
                 event.preventDefault()
-                getDataAbonnements($(this).attr('href')[1])
+                abonnesOrAbonnements = "abonnes"
+                getData(1, abonnesOrAbonnements);
             })
+
+            $(document).on('click', '.pagination a', (event) => {
+                event.preventDefault()
+                $pagination = $(event.currentTarget)
+                console.log($pagination.parent())
+                $('.page-item').removeClass('active')
+                $pagination.parent().addClass('active')
+                getData($pagination.attr('href').split('page=')[1], abonnesOrAbonnements)
+            })
+
+            $(".card-rotative").flip({
+                trigger: 'hover'
+            });
         })(jQuery);
 
-        let getDataAbonnements = (page) => {
+        let getData = (page, abonnesOrAbonnements) => {
             $.ajax({
-                url: '/profil/' + {{ Auth::id() }} + '/abonnements/' + page,
+                url: '/profil/' + {{ Auth::id() }} + '/' + abonnesOrAbonnements + '/?page=' + page,
                 type: 'get',
                 datatype: 'html'
             }).done((data) => {
                 console.log(data)
-                $('#abonnements').html(data);
-                location.hash= page
+                $('#' + abonnesOrAbonnements).empty().html(data);
+                location.hash = page
             }).fail((error) => {
                 console.log(error)
-                //alert("Vos abonnements n'ont pas pu être chargé")
             })
         }
     </script>

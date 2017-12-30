@@ -3,7 +3,7 @@
         <a class="nav-link active" href="#information" role="tab" data-toggle="tab">Mes informations</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#abonnes" role="tab" data-toggle="tab">Mes abonnés</a>
+        <a class="nav-link" id="btnAbonnes" href="#abonnes" role="tab" data-toggle="tab">Mes abonnés</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="btnAbonnements" href="#abonnements" role="tab" data-toggle="tab">Mes abonnements</a>
@@ -23,11 +23,11 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="abonnes">
-        @include('profil.includes.abonnes')
+        @include('profil.includes.friends')
     </div>
 
     <div role="tabpanel" class="tab-pane" id="abonnements">
-        @include('profil.includes.abonnements')
+        @include('profil.includes.friends')
     </div>
 
     <div role="tabpanel" class="tab-pane" id="articles">

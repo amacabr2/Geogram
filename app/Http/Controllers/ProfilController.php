@@ -17,10 +17,10 @@ class ProfilController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(int $id) {
-        $myAbonnements = null;
+        $friends = null;
         list($abonnements, $abonnes, $articles, $voyages, $user) = $this->getInfo($id);
 
-        return view('profil.profil', compact("user", "abonnements", "abonnes", "articles", "voyages", "myAbonnements"));
+        return view('profil.profil', compact("user", "abonnements", "abonnes", "articles", "voyages", "friends"));
     }
 
     /**
@@ -31,10 +31,10 @@ class ProfilController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function abonnements(int $id, Request $request) {
-        $myAbonnements = $this->getAllAbonnementsOfUser()->paginate(9);
+        $friends = $this->getAllAbonnementsOfUser()->paginate(9);
 
         if ($request->ajax()) {
-            return view('profil.includes.abonnements', compact("myAbonnements"));
+            return view('profil.includes.friends', compact("friends"));
         }
 
         return redirect()->route('profil', ['id' => $id]);
@@ -48,10 +48,10 @@ class ProfilController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function abonnes(int $id, Request $request) {
-        $myAbonnes = $this->getAllAbonnesOfUser()->paginate(9);
+        $friends = $this->getAllAbonnesOfUser()->paginate(9);
 
         if ($request->ajax()) {
-            return view('profil.includes.abonnes', compact("myAbonnes"));
+            return view('profil.includes.friends', compact("friends"));
         }
 
         return redirect()->route('profil', ['id' => $id]);

@@ -43,7 +43,7 @@ class ResizeImage implements ShouldQueue {
      */
     public function __construct(string $file, string $typeImage, User $user) {
         $this->file = $file;
-        $this->formats = ($typeImage == 'avatar') ? [[150, 150], [500, 500]] : [[1000, 650], [2000, 1300]];;
+        $this->formats = ($typeImage == 'avatar') ? [[150, 150], [500, 500]] : [[500, 280], [1000, 650], [2000, 1300]];;
         $this->typeImage = $typeImage;
         $this->user = $user;
     }

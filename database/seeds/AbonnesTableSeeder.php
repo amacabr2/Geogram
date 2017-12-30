@@ -26,7 +26,7 @@ class AbonnesTableSeeder extends Seeder {
         for ($i = 0; $i < 300; $i++) {
             DB::table('abonnes')->insert([
                 'user1_id' => $users[$i % sizeof($users)]->id,
-                'user2_id' => $users[($i + 2) % sizeof($users)]->id
+                'user2_id' => $users[$this->choixAbonnement($i, $users, "abonne")]->id
             ]);
         }
     }
