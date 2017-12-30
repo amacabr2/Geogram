@@ -62,6 +62,42 @@
             $(".card-rotative").flip({
                 trigger: 'hover'
             });
+
+            // $(window).on('hashchange', _ => {
+            //     if (window.location.hash) {
+            //         let page = window.location.hash.replace('#', '')
+            //         if (page === Number.NaN || page <= 0) {
+            //             return false
+            //         } else {
+            //             getDataAbonnements(page);
+            //         }
+            //     }
+            // })
+
+            $('#btnAbonnements').on('click', (event) => {
+                event.preventDefault()
+                getDataAbonnements(1);
+            })
+
+            $('.pagination .page-item a').on('click', (event) => {
+                event.preventDefault()
+                getDataAbonnements($(this).attr('href')[1])
+            })
         })(jQuery);
+
+        let getDataAbonnements = (page) => {
+            $.ajax({
+                url: '/profil/' + {{ Auth::id() }} + '/abonnements/' + page,
+                type: 'get',
+                datatype: 'html'
+            }).done((data) => {
+                console.log(data)
+                $('#abonnements').html(data);
+                location.hash= page
+            }).fail((error) => {
+                console.log(error)
+                //alert("Vos abonnements n'ont pas pu être chargé")
+            })
+        }
     </script>
 @endsection

@@ -6,7 +6,7 @@
         <a class="nav-link" href="#abonnes" role="tab" data-toggle="tab">Mes abonnés</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#abonnements" role="tab" data-toggle="tab">Mes abonnements</a>
+        <a class="nav-link" id="btnAbonnements" href="#abonnements" role="tab" data-toggle="tab">Mes abonnements</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#articles" role="tab" data-toggle="tab">Mes articles</a>

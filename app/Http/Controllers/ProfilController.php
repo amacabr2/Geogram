@@ -17,32 +17,95 @@ class ProfilController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(int $id) {
-        $abonnements = $this->getAllAbonnementsOfUser();
-        $abonnes = $this->getAllAbonnesOfUser();
-        $articles = $this->getAllActiclesOfUser();
-        $voyages = $this->getAllVoyagesOfArticles();
+        $myAbonnements = null;
+        list($abonnements, $abonnes, $articles, $voyages, $user) = $this->getInfo($id);
+
+        return view('profil.profil', compact("user", "abonnements", "abonnes", "articles", "voyages", "myAbonnements"));
+    }
+
+    /**
+     * Afficher les abonnements avec un système de pagination avec de l'ajax
+     *
+     * @param int $id
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function abonnements(int $id, Request $request) {
+        $myAbonnements = $this->getAllAbonnementsOfUser()->paginate(9);
+
+        if ($request->ajax()) {
+            return view('profil.includes.abonnements', compact("myAbonnements"));
+        }
+
+        return redirect()->route('profil', ['id' => $id]);
+    }
+
+    /**
+     * Afficher les abonnés avec un système de pagination avec de l'ajax
+     *
+     * @param int $id
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function abonnes(int $id, Request $request) {
+        $myAbonnes = $this->getAllAbonnesOfUser()->paginate(9);
+
+        if ($request->ajax()) {
+            return view('profil.includes.abonnes', compact("myAbonnes"));
+        }
+
+        return redirect()->route('profil', ['id' => $id]);
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    private function getInfo(int $id): array {
+        $abonnements = $this->getAllAbonnementsOfUser()->get();
+        $abonnes = $this->getAllAbonnesOfUser()->get();
+        $articles = $this->getAllActiclesOfUser()->get();
+        $voyages = $this->getAllVoyagesOfArticles()->get();
         $user = User::findOrFail($id);
-        //dd($articles);
-        return view('profil.profil', compact("user", "abonnements", "abonnes", "articles", "voyages"));
+        return array($abonnements, $abonnes, $articles, $voyages, $user);
     }
 
-    public function getAllAbonnementsOfUser() {
+    /**
+     * Récupère les abonnements
+     *
+     * @return mixed
+     */
+    private function getAllAbonnementsOfUser() {
         return User::join('abonnements', 'abonnements.user2_id', '=', 'users.id')
-            ->where('abonnements.user1_id', '=', Auth::user()->id)->get();
+            ->where('abonnements.user1_id', '=', Auth::user()->id);
     }
 
-    public function getAllAbonnesOfUser() {
+    /**
+     * Récupère les abonnés
+     *
+     * @return mixed
+     */
+    private function getAllAbonnesOfUser() {
         return User::join('abonnes', 'abonnes.user2_id', '=', 'users.id')
-            ->where('abonnes.user1_id', '=', Auth::user()->id)->get();
+            ->where('abonnes.user1_id', '=', Auth::user()->id);
     }
 
-    public function getAllActiclesOfUser() {
+    /**
+     * Récupère les articles
+     *
+     * @return mixed
+     */
+    private function getAllActiclesOfUser() {
         return Post::join('users', 'users.id', '=', 'posts.user_id')
-            ->where('users.id', '=', Auth::user()->id)->get();
+            ->where('users.id', '=', Auth::user()->id);
     }
 
-    public function getAllVoyagesOfArticles() {
-        return Voyage::where('voyages.user_id', '=', Auth::user()->id)->get();
+    /**
+     * Récupère les voyages
+     *
+     * @return mixed
+     */
+    private function getAllVoyagesOfArticles() {
+        return Voyage::where('voyages.user_id', '=', Auth::user()->id);
     }
-
 }
