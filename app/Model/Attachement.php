@@ -16,8 +16,8 @@ class Attachement extends Model
         return $this->morphTo();
     }
 
-    public function uploadFile(UploadedFile $uploadedFile) {
-        $file = $uploadedFile->storePublicly('uploads', ['disk' => 'public']);
+    public function uploadFile(UploadedFile $file) {
+        $file = $file->storePublicly('uploads', ['disk' => 'public']);
         $this->name = basename($file);
         return $this;
     }

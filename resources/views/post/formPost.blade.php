@@ -47,8 +47,3 @@ if($post->id) {
     {!! Form::close() !!}
 </div>
 
-@section('javascript')
-    <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/editeur.js') }}"></script>
-@endsection

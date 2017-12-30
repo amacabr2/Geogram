@@ -30,7 +30,7 @@ class AttachementRequest extends FormRequest
     {
         return [
             'attachable_id' => 'required|int',
-            'image' => 'reqired|image',
+            'image' => 'required|image',
             'attachable_type' => 'required'
         ];
     }

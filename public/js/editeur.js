@@ -16,7 +16,7 @@ if(window.tinyMCE) {
                     success(res.data.url);
                 })
                 .catch(function (err) {
-                    alert("Image trop volumineuse " + err.response.statutText);
+                    alert(err.response.statutText);
                     success('http://placehold.it/300x300');
                     //failure(err.response.statutText)
                 })

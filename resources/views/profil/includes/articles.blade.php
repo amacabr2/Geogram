@@ -6,13 +6,13 @@
 <div class="row">
 
     @forelse($articles as $article)
-        <div class="row">
+        <div class="row"  style="width: 100%">
             <div class="card">
                 <div class="card-header"><b>{{ $article->user->pseudo }}</b></div>
                 <div class="card-body">
                     <h4> {{ $article->title }} </h4>
                     <h5> Pays visité : {{ $article->voyage->state }} </h5>
-                    <p> {{ $article->content }} </p>
+                    <p> {!! $article->content !!} </p>
                 </div>
                 <div class="card-footer">
                     <div class="row">
