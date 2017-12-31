@@ -43,12 +43,27 @@
                             <a href="{{ route('profil.new-abonnement', ['id' => $user->id]) }}" class="btn btn-primary btn-round btn-lg">S'abonner</a>
                         @endif
                     @endif
-                    <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                    <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Instagram">
-                        <i class="fa fa-instagram"></i>
-                    </a>
+
+                    @if($user->lienFacebook)
+                        <a href="{{ $user->lienFacebook }}" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Suis moi sur Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    @endif
+                    @if($user->lienInstagram)
+                        <a href="{{ $user->lienInstagram }}" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Suis moi sur Instagram">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    @endif
+                    @if($user->lienTwitter)
+                        <a href="{{ $user->lienTwitter }}" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Suis moi sur Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    @endif
+                    @if($user->lienGoogle)
+                        <a href="{{ $user->lienGoogle }}" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Suis moi sur Google+">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    @endif
                 </div>
 
                 @if (Auth::id() == $user->id )
