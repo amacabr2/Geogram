@@ -49,14 +49,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/delete/{id}', 'PostsController@delete')->name('post.delete')->where('id', '[0-9]+');
     });
 
-    /*Route::group(['prefix' => 'attachements'], function () {
-        Route::post('/', 'AttachementController@store')->name('post.store')->where('id', '[0-9]+');
-        Route::put('/{id}', 'AttachementController@update')->name('post.update')->where('id', '[0-9]+');
-        Route::get('/create', 'AttachementController@create')->name('post.create');
-        Route::get('/edit/{id}', 'AttachementController@edit')->name('post.edit')->where('id', '[0-9]+');
-        Route::get('/show/{id}', 'AttachementController@show')->name('post.show')->where('id', '[0-9]+');
-        Route::get('/delete/{id}', 'AttachementController@delete')->name('post.delete')->where('id', '[0-9]+');
-    });*/
-
     Route::post('/attachements', 'AttachementController@store')->name('attachements.store');
+
+    Route::post('comment/{id}', 'CommentairesController@store')->name('comment.store')->where('id', '[0-9]+');
 });

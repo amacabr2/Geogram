@@ -46,7 +46,7 @@
 
             <div class="col-md-9">
 
-                <div class="row" id="article" style="border: 3px #f96332 solid; padding-right: 20px"> {!! $post->content !!} </div>
+                <div class="row" id="article"> {!! $post->content !!} </div>
 
                 <div class="row">
 
@@ -64,7 +64,22 @@
                             @endforelse
                         </div>
                         <div class="card-footer">
-
+                            {!! Form::open(['method' => 'posts', 'route' => ['comment.store', $post->id], 'class' => 'form-horizontal', 'files' => true]) !!}
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <div class="form-group">
+                                    {!! Form::label('contenu', 'Votre commentaire') !!}
+                                    {!! Form::textarea('contenu', '', ['class' => 'form-control']) !!}
+                                </div>
+                                {!! Form::submit('Envoyer', ['class' => 'btn btn-primary']) !!}
+                            {!! Form::close() !!}
                         </div>
                     </div>
 
