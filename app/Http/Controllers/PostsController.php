@@ -38,7 +38,7 @@ class PostsController extends Controller {
 
     public function edit(int $id) {
         $post = Post::findOrFail($id);
-        $voyages = Voyage::pluck('title', 'id');
+        $voyages = Voyage::pluck('state', 'id');
         return view('post.editPost', compact('post', 'voyages'));
     }
 
@@ -46,7 +46,7 @@ class PostsController extends Controller {
         $post = Post::findOrFail($id);
         $this->validate($request, [
             'title' => 'required',
-            'content' => 'required',
+            'contenu' => 'required',
             'voyage_id' => 'required'
         ]);
         $data = [

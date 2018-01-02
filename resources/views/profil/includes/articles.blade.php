@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <h4> {{ $article->title }} </h4>
                         <h5> Pays visité : {{ $article->voyage->state }} </h5>
-                        <p> {!! $article->content !!} </p>
+                        <p> Création de l'article : {{ $article->created_at }} </p>
                     </div>
                     <div class="card-footer">
                         <div class="row">
@@ -22,7 +22,7 @@
                                 <h5>Commentaire(s)</h5>
                             </div>
                             <div class="col-md-2">
-                                <a class="btn btn-primary" {{--href="{{route('article.show', $article)}}"--}} >Voir le post</a>
+                                <a class="btn btn-primary" href="{{route('post.show', $article)}}" >Voir le post</a>
                             </div>
                         </div>
                     </div>

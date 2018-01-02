@@ -140,8 +140,7 @@ class ProfilController extends Controller {
      * @return mixed
      */
     private function getAllActiclesOfUser(int $id) {
-        return Post::join('users', 'users.id', '=', 'posts.user_id')
-            ->where('users.id', '=', $id);
+        return Post::where('posts.user_id', '=', $id);
     }
 
     /**
