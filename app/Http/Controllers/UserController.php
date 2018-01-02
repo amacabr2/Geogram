@@ -7,10 +7,33 @@ use App\User;
 use App\Utils\UploadImageHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller {
 
     use UploadImageHelper;
+
+    /**
+     * Affiche les utilsateurs auquel l'utilisateur courant n'est pas abonné
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search() {
+        $users = User::select('users.id', 'users.pseudo', 'users.job', 'users.description',  'users.avatar', 'users.couverture', 'users.sexe')
+            ->join('abonnements', 'abonnements.user2_id', '=', 'users.id')
+            ->where('users.id', '!=', Auth::id())
+            ->whereNOTIn('abonnements.user2_id', function ($query) {
+                $query->select('users.id')
+                    ->from('users')
+                    ->join('abonnements', 'abonnements.user2_id', '=', 'users.id')
+                    ->where('abonnements.user1_id', '=', Auth::id());
+            })
+            ->groupBy('users.id')
+            ->orderBy('users.id')
+            ->paginate(12);
+
+        return view('user.search', compact("users"));
+    }
 
     /**
      * L'utilisateur modifie ses informations

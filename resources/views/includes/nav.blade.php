@@ -24,6 +24,12 @@
                     </li>
                 @else
                     <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Recherche de nouveaux amis" data-placement="bottom" href="{{ route('users.search') }}">
+                            <i class="fa fa-user-plus"></i>
+                            <p class="d-lg-none d-xl-none">Recherche de nouveaux amis</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">File d'actualité</a>
                     </li>
                     <li class="nav-item dropdown">

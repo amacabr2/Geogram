@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/users/search', 'UserController@search')->name('users.search');
     Route::put('/users/{id}', 'UserController@update')->name('users.update')->where('id', '[0-9]+');
 
     Route::group(['prefix' => 'profil'], function () {

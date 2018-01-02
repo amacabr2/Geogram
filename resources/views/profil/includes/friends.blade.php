@@ -25,7 +25,9 @@
                 @endforeach
             </div>
         @empty
-            <p>Vous n'avez pas d'abonnement</p>
+            <div class="row">
+                <p>Vous n'avez pas d'abonnement</p>
+            </div>
         @endforelse
 
         <div class="row">
