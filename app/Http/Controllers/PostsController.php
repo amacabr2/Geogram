@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Commentaire;
 use App\Post;
 use App\Voyage;
 use Illuminate\Http\Request;
@@ -11,7 +12,8 @@ class PostsController extends Controller {
 
     public function show(int $id) {
         $post = Post::findOrFail($id);
-        return view('post.voirPost', compact('post'));
+        $commentaires = $this->getCommenataireOfPost($id);
+        return view('post.voirPost', compact('post', 'commentaires'));
     }
 
     public function create() {
@@ -63,5 +65,9 @@ class PostsController extends Controller {
         $post = Post::findOrFail($id);
         $post->delete();
         return redirect(route('profil', Auth::user()->id))->withSuccess('L\'article à été supprimé');
+    }
+
+    public function getCommenataireOfPost(int $id) {
+        return Commentaire::where('commentaires.post_id', '=', $id);
     }
 }
