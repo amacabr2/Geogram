@@ -34,9 +34,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="row">
-                                            <div class="col-md-10">
-                                                <h5>Commentaire(s)</h5>
-                                            </div>
+                                            <div class="col-md-10"></div>
                                             <div class="col-md-2">
                                                 <a class="btn btn-primary" href="{{route('post.show', $post)}}" >Voir le post</a>
                                             </div>

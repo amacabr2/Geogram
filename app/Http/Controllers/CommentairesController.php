@@ -18,12 +18,12 @@ class CommentairesController extends Controller {
             'user_id' => Auth::user()->id
         ];
         Commentaire::create($data);
-        return redirect(route('post.show', $id))->withSuccess('Le commentaire à été enregistré');
+        return redirect(route('post.show', $id));
     }
 
-    public function delete(int $id) {
-        $post = Post::findOrFail($id);
-        $post->delete();
-        return redirect(route('post.show', $id))->withSuccess('Le commentaire à été supprimé');
+    public function delete(int $id, int $post) {
+        $commentaire = Commentaire::findOrFail($id);
+        $commentaire->delete();
+        return redirect(route('post.show', $post));
     }
 }

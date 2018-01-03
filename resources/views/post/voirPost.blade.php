@@ -57,7 +57,11 @@
                         <div class="card-body">
                             @forelse($commentaires->get() as $commentaire)
                                 <div class="commentaire" style="border-bottom: solid 2px #919191">
-                                    <b>{{ $commentaire->user->pseudo }}</b> <p> {{ $commentaire->content }} </p>
+                                    <b>
+                                        {{ $commentaire->user->pseudo }}
+                                        <i class="fa fa-times confirmModalLink" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
+                                    </b>
+                                    <p> {{ $commentaire->content }} </p>
                                 </div>
                             @empty
                                 <p> Auncun commantaire pour cet article. </p>
@@ -93,14 +97,14 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Suppression de  l'article</h5>
+                        <h5 class="modal-title">Suppression de l'article</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <p>
-                            Voulez vous vraiment supprimer cet articlet ? <br/>
+                            Voulez vous vraiment supprimer cet article ? <br/>
                             Les commentaires correspodants à cet article seront supprimés avec.
                         </p>
                     </div>
@@ -112,11 +116,52 @@
             </div>
         </div>
 
+        <div id="deleteCommentModal" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Suppression du commentaire </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Voulez vous vraiment supprimer ce commentaire ?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-primary" id="confirmModalYes" style="width: 100%">Suppression</a>
+                        <button type="button" class="btn btn-secondary" id="confirmModalNo" data-dismiss="modal">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 @endsection
 
 @section('javascript')
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            let theHREF;
+            $(".confirmModalLink").click(function(e) {
+                e.preventDefault();
+                theHREF = $(this).attr("href");
+                $("#deleteCommentModal").modal("show");
+            });
+
+            $("#confirmModalNo").click(function(e) {
+                $("#deleteCommentModal").modal("hide");
+            });
+
+            $("#confirmModalYes").click(function(e) {
+                window.location.href = theHREF;
+            });
+        });
+    </script>
     <script type="text/javascript">
         const $nav = $('nav');
         $nav.removeClass('navbar-transparent');
