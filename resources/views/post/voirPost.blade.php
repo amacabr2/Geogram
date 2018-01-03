@@ -61,7 +61,6 @@
                                         {{ $commentaire->user->pseudo }}
                                         <div class="pull-right">
                                             <i class="fa fa-times confirmModalLink" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
-                                            <i class="fa fa-times" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
                                         </div>
                                     </b>
                                     <p> {{ $commentaire->content }} </p>
