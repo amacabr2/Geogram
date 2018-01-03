@@ -26,7 +26,9 @@
                         @forelse($posts as $post)
                             <div class="row">
                                 <div class="card">
-                                    <div class="card-header"><b>{{ $post->pseudo }}</b></div>
+                                    <div class="card-header">
+                                        <a href="{{route('profil', $post->user->id)}}" ><b>{{ $post->pseudo }}</b></a>
+                                    </div>
                                     <div class="card-body">
                                         <h4> {{ $post->title }} </h4>
                                         <h5> Pays visité : {{ $post->state }} </h5>

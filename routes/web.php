@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'comment'], function () {
         Route::post('/{id}', 'CommentairesController@store')->name('comment.store')->where('id', '[0-9]+');
         Route::get('/delete/{id}/{post}', 'CommentairesController@delete')->name('comment.delete')->where('id', '[0-9]+')->where('post', '[0-9]+');
+        Route::put('/{id}/{post}', 'CommentairesController@update')->name('comment.update')->where('id', '[0-9]+')->where('post', '[0-9]+');
     });
 
 });

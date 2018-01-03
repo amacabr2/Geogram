@@ -60,10 +60,15 @@
                                     <b>
                                         {{ $commentaire->user->pseudo }}
                                         <div class="pull-right">
-                                            <i class="fa fa-times confirmModalLink" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
+                                            @if(Auth::user()->id == $post->user_id or Auth::user()->id == $commentaire->user_id)
+                                                <i class="fa fa-times confirmModalLink" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
+                                            @endif
+                                            @if(Auth::user()->id == $commentaire->user_id)
+                                                <i class="fa fa-pencil" data-toggle="modal" data-target="#editCommentModal" data-commentaire="{{ $commentaire }}"></i>
+                                            @endif
                                         </div>
                                     </b>
-                                    <p> {{ $commentaire->content }} </p>
+                                    <span> {{ $commentaire->content }} </span>
                                 </div>
                             @empty
                                 <p> Auncun commantaire pour cet article. </p>
@@ -142,6 +147,40 @@
             </div>
         </div>
 
+        <div id="editCommentModal" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modification du commentaire </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {!! Form::open(['method' => 'put', 'route' => ['comment.update', $commentaire->id, $post->id], 'class' => 'form-horizontal', 'files' => true]) !!}
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="form-group">
+                            {!! Form::label('contenu', 'Votre commentaire') !!}
+                            {!! Form::textarea('contenu', $commentaire->content , ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::submit('Envoyer', ['class' => 'btn btn-primary', 'style' => 'width: 100%']) !!}
+                        {!! Form::close() !!}
+                        <button type="button" class="btn btn-secondary" id="confirmModalNo" data-dismiss="modal">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 @endsection
@@ -149,6 +188,8 @@
 @section('javascript')
 
     <script type="text/javascript">
+
+        //modal suppression commentaire
         $(document).ready(function() {
             let theHREF;
             $(".confirmModalLink").click(function(e) {
@@ -156,19 +197,27 @@
                 theHREF = $(this).attr("href");
                 $("#deleteCommentModal").modal("show");
             });
-
             $("#confirmModalNo").click(function(e) {
                 $("#deleteCommentModal").modal("hide");
             });
-
             $("#confirmModalYes").click(function(e) {
                 window.location.href = theHREF;
             });
         });
-    </script>
-    <script type="text/javascript">
+
+        //modifier commentaire
+        $('#editCommentModal').on('show.bs.modal', function(e) {
+            //get data-id attribute of the clicked element
+            let com = $(e.relatedTarget).data('commentaire');
+            //populate the textbox
+            $(e.currentTarget).find('input[name="bookId"]').val(com);
+        });
+
+        //barre navigation
         const $nav = $('nav');
         $nav.removeClass('navbar-transparent');
         $nav.removeAttr('color-on-scroll')
+
     </script>
+
 @endsection
