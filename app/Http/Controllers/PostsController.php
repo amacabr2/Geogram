@@ -12,15 +12,15 @@ class PostsController extends Controller {
 
     public function show(int $id) {
         $post = Post::findOrFail($id); // Post::notDraft()->get()
-        $commentaires = $this->getCommenataireOfPost($id);
-        return view('post.voirPost', compact('post', 'commentaires'));
+        $commentaires = $this->getCommentaireOfPost($id);
+        return view('post.show', compact('post', 'commentaires'));
     }
 
     public function create() {
         $edit = false;
         $post = Post::draft();
         $voyages = Voyage::where('voyages.user_id', '=', Auth::user()->id)->pluck('state', 'id');
-        return view('post.createPost', compact('post', 'voyages', 'edit'));
+        return view('post.create', compact('post', 'voyages', 'edit'));
     }
 
     public function store(Request $request) {
@@ -43,7 +43,7 @@ class PostsController extends Controller {
         $edit = true;
         $post = Post::findOrFail($id);
         $voyages = Voyage::pluck('state', 'id');
-        return view('post.editPost', compact('post', 'voyages', 'edit'));
+        return view('post.edit', compact('post', 'voyages', 'edit'));
     }
 
     public function update(int $id, Request $request) {
@@ -69,7 +69,7 @@ class PostsController extends Controller {
         return redirect(route('profil', Auth::user()->id))->withSuccess('L\'article à été supprimé');
     }
 
-    public function getCommenataireOfPost(int $id) {
-        return Commentaire::where('commentaires.post_id', '=', $id);
+    public function getCommentaireOfPost(int $id) {
+        return Commentaire::where('commentaires.post_id', '=', $id)->get();
     }
 }

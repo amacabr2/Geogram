@@ -6,7 +6,7 @@
 
         <h1> Modifier un article </h1>
 
-        @include('post.formPost')
+        @include('post.form')
 
     </div>
 

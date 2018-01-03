@@ -46,7 +46,11 @@
 
             <div class="col-md-9">
 
-                <div class="row" id="article"> {!! $post->content !!} </div>
+                <div class="row" id="article" style="border-bottom: #f76234 solid 3px; margin-bottom: 2em; padding-bottom: 1em">
+                    <div class="col-md-12">
+                        {{ $post->content }}
+                    </div>
+                </div>
 
                 <div class="row">
 
@@ -55,7 +59,7 @@
                             <h3> Commentaire(s) </h3>
                         </div>
                         <div class="card-body">
-                            @forelse($commentaires->get() as $commentaire)
+                            @forelse($commentaires as $commentaire)
                                 <div class="commentaire" style="border-bottom: solid 2px #919191">
                                     <b>
                                         {{ $commentaire->user->pseudo }}
@@ -87,7 +91,7 @@
                                 @endif
                                 <div class="form-group">
                                     {!! Form::label('contenu', 'Votre commentaire') !!}
-                                    {!! Form::textarea('contenu', '', ['class' => 'form-control']) !!}
+                                    {!! Form::textarea('contenu', '', ['class' => 'form-control', 'rows' => 5]) !!}
                                 </div>
                                 {!! Form::submit('Envoyer', ['class' => 'btn btn-primary']) !!}
                             {!! Form::close() !!}
