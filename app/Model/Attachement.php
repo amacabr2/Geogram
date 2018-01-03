@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class Attachement extends Model
-{
+class Attachement extends Model {
+
     public $guarded = [];
 
     public $appends = ['url'];
@@ -16,6 +16,12 @@ class Attachement extends Model
         return $this->morphTo();
     }
 
+    /**
+     * Upload du fichier
+     *
+     * @param UploadedFile $file
+     * @return $this
+     */
     public function uploadFile(UploadedFile $file) {
         $file = $file->storePublicly('uploads', ['disk' => 'public']);
         $this->name = basename($file);
@@ -24,6 +30,6 @@ class Attachement extends Model
 
     public function getUrlAttribute() {
         return Storage::disk('public')->url('/uploads/', $this->name);
-}
+    }
 
 }

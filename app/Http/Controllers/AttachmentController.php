@@ -11,20 +11,25 @@ namespace App\Http\Controllers;
 
 use App\Attachement;
 use App\Http\Requests\AttachementRequest;
-use App\Post;
 use Illuminate\Http\JsonResponse;
 
-class AttachementController extends Controller
-{
+class AttachmentController extends Controller {
 
-    public function store(AttachementRequest $attachementRequest) {
-        $type = $attachementRequest->get('attachable_type');
-        $id = $attachementRequest->get('attachable_id');
-        $file = $attachementRequest->file('image');
-        if(class_exists($type) && method_exists($type, 'attachements')) {
-            $subject = call_user_func($type.'::find', $id);
-            if($subject) {
-                $attachement = new Attachement($attachementRequest->only('attachable_type', 'attachable_id'));
+    /**
+     * Permet de lier le fichier à une entité
+     *
+     * @param AttachementRequest $request
+     * @return Attachement|JsonResponse
+     */
+    public function store(AttachementRequest $request) {
+        $type = $request->get('attachable_type');
+        $id = $request->get('attachable_id');
+        $file = $request->file('image');
+
+        if (class_exists($type) && method_exists($type, 'attachements')) {
+            $subject = call_user_func($type . '::find', $id);
+            if ($subject) {
+                $attachement = new Attachement($request->only('attachable_type', 'attachable_id'));
                 $attachement->uploadFile($file);
                 $attachement->save();
                 return $attachement;

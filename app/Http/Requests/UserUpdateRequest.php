@@ -31,8 +31,8 @@ class UserUpdateRequest extends FormRequest {
             'codePostal' => 'required|integer',
             'adresse' => 'required',
             'birthDate' => 'required|date',
-            'avatar' => 'image|sometimes:nullable',
-            'couverture' => 'image|sometimes:nullable',
+            'avatar' => 'image|mimes:jpeg,png,jpg|nullable',
+            'couverture' => 'image|mimes:jpeg,png,jpg|nullable',
         ];
     }
 
