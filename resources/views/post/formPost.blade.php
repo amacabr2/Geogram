@@ -1,11 +1,9 @@
 <?php
-
-if($post->id) {
+if($edit) {
     $options = ['method' => 'put', 'route' => ['post.update', $post->id], 'class' => 'form-horizontal', 'files' => true];
 } else {
     $options = ['method' => 'posts', 'route' => ['post.store'], 'class' => 'form-horizontal', 'files' => true];
 }
-
 ?>
 
 <div class="col-md-12">
@@ -38,7 +36,7 @@ if($post->id) {
             ]) !!}
         </div>
 
-        @if($post->id)
+        @if($edit)
             {!! Form::submit('Modifier', ['class' => 'btn btn-primary']) !!}
         @else
             {!! Form::submit('Créer', ['class' => 'btn btn-primary']) !!}

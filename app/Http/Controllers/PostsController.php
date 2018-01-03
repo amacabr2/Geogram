@@ -11,15 +11,16 @@ use Illuminate\Support\Facades\Auth;
 class PostsController extends Controller {
 
     public function show(int $id) {
-        $post = Post::findOrFail($id);
+        $post = Post::findOrFail($id); // Post::notDraft()->get()
         $commentaires = $this->getCommenataireOfPost($id);
         return view('post.voirPost', compact('post', 'commentaires'));
     }
 
     public function create() {
-        $post = new Post();
+        $edit = false;
+        $post = Post::draft();
         $voyages = Voyage::where('voyages.user_id', '=', Auth::user()->id)->pluck('state', 'id');
-        return view('post.createPost', compact('post', 'voyages'));
+        return view('post.createPost', compact('post', 'voyages', 'edit'));
     }
 
     public function store(Request $request) {
@@ -35,13 +36,14 @@ class PostsController extends Controller {
             'user_id' => Auth::user()->id
         ];
         Post::create($data);
-        return redirect(route('profil', Auth::user()->id))->withSuccess('L\'article à été enregistré');
+        return redirect(route('profil', Auth::user()->id))->withSuccess('L\'article à été créé');
     }
 
     public function edit(int $id) {
+        $edit = true;
         $post = Post::findOrFail($id);
         $voyages = Voyage::pluck('state', 'id');
-        return view('post.editPost', compact('post', 'voyages'));
+        return view('post.editPost', compact('post', 'voyages', 'edit'));
     }
 
     public function update(int $id, Request $request) {

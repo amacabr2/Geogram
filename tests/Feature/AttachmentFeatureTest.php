@@ -55,56 +55,56 @@ class AttachmentFeatureTest extends TestCase {
         $response->assertStatus(200);
     }
 
-//    public function testDeleteAttachmentDeleteFile() {
-//        $response = $this->callController();
-//        $attachment = $response->json();
-//        $this->assertFileExists($this->getFileForAttachment($attachment));
-//        Attachement::find($attachment['id'])->delete();
-//        $this->assertFileNotExists($this->getFileForAttachment($attachment));
-//    }
-//
-//    public function testDeletePostDeleteAllAttachments() {
-//        $response = $this->callController();
-//        $attachment = $response->json();
-//        factory(Attachement::class, 3)->create();
-//        $this->assertFileExists($this->getFileForAttachment($attachment));
-//        $this->assertEquals(4, Attachement::count());
-//        Post::first()->delete();
-//        $this->assertFileNotExists($this->getFileForAttachment($attachment));
-//        $this->assertEquals(3, Attachement::count());
-//    }
-//
-//    public function testChangePostContentAttachmentsAreDeleted() {
-//        $response = $this->callController();
-//        $attachment = $response->json();
-//        factory(Attachement::class, 3)->create();
-//        $this->assertFileExists($this->getFileForAttachment($attachment));
-//        $this->assertEquals(4, Attachement::count());
-//        $post = Post::first();
-//        $post->content = "<img src=\"#{$attachment['url']}\"/> balbalbabla";
-//        $post->save();
-//        $this->assertEquals(4, Attachement::count());
-//        $post->content = "";
-//        $post->save();
-//        $this->assertEquals(3, Attachement::count());
-//        $this->assertFileNotExists($this->getFileForAttachment($attachment));
-//    }
-//
-//    public function testChangePostContentAttachmentsAreDeletedIfImageChanged() {
-//        $response = $this->callController();
-//        $attachment = $response->json();
-//        factory(Attachement::class, 3)->create();
-//        $this->assertFileExists($this->getFileForAttachment($attachment));
-//        $this->assertEquals(4, Attachement::count());
-//        $post = Post::first();
-//        $post->content = "<img src=\"#{$attachment['url']}\"/> balbalbabla";
-//        $post->save();
-//        $this->assertEquals(4, Attachement::count());
-//        $post->content = "<img src=\"azeeaze/eazeazeazeaz/azeezaze.jpg\"/>";
-//        $post->save();
-//        $this->assertEquals(3, Attachement::count());
-//        $this->assertFileNotExists($this->getFileForAttachment($attachment));
-//    }
+    public function testDeleteAttachmentDeleteFile() {
+        $response = $this->callController();
+        $attachment = $response->json();
+        $this->assertFileExists($this->getFileForAttachment($attachment));
+        Attachement::find($attachment['id'])->delete();
+        $this->assertFileNotExists($this->getFileForAttachment($attachment));
+    }
+
+    public function testDeletePostDeleteAllAttachments() {
+        $response = $this->callController();
+        $attachment = $response->json();
+        factory(Attachement::class, 3)->create();
+        $this->assertFileExists($this->getFileForAttachment($attachment));
+        $this->assertEquals(4, Attachement::count());
+        Post::first()->delete();
+        $this->assertFileNotExists($this->getFileForAttachment($attachment));
+        $this->assertEquals(3, Attachement::count());
+    }
+
+    public function testChangePostContentAttachmentsAreDeleted() {
+        $response = $this->callController();
+        $attachment = $response->json();
+        factory(Attachement::class, 3)->create();
+        $this->assertFileExists($this->getFileForAttachment($attachment));
+        $this->assertEquals(4, Attachement::count());
+        $post = Post::first();
+        $post->content = "<img src=\"#{$attachment['url']}\"/> balbalbabla";
+        $post->save();
+        $this->assertEquals(4, Attachement::count());
+        $post->content = "";
+        $post->save();
+        $this->assertEquals(3, Attachement::count());
+        $this->assertFileNotExists($this->getFileForAttachment($attachment));
+    }
+
+    public function testChangePostContentAttachmentsAreDeletedIfImageChanged() {
+        $response = $this->callController();
+        $attachment = $response->json();
+        factory(Attachement::class, 3)->create();
+        $this->assertFileExists($this->getFileForAttachment($attachment));
+        $this->assertEquals(4, Attachement::count());
+        $post = Post::first();
+        $post->content = "<img src=\"#{$attachment['url']}\"/> balbalbabla";
+        $post->save();
+        $this->assertEquals(4, Attachement::count());
+        $post->content = "<img src=\"azeeaze/eazeazeazeaz/azeezaze.jpg\"/>";
+        $post->save();
+        $this->assertEquals(3, Attachement::count());
+        $this->assertFileNotExists($this->getFileForAttachment($attachment));
+    }
 
     private function callController(array $data = []) {
         $path = dirname(__DIR__) . '/fixtures/demo.png';

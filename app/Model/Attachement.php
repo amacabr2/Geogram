@@ -12,6 +12,14 @@ class Attachement extends Model {
 
     public $appends = ['url'];
 
+    public static function boot() {
+        parent::boot();
+        self::deleted(function ($attachment) {
+            /** @var Attachement $attachment */
+            $attachment->deleteFile();
+        });
+    }
+
     public function attachable() {
         return $this->morphTo();
     }
@@ -28,8 +36,17 @@ class Attachement extends Model {
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUrlAttribute() {
         return Storage::disk('public')->url('/uploads/' . $this->name);
     }
 
+    /**
+     * Efface le fichier
+     */
+    public function deleteFile() {
+        Storage::disk('public')->delete('uploads/' . $this->name);
+    }
 }
