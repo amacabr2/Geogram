@@ -29,7 +29,7 @@ class Attachement extends Model {
     }
 
     public function getUrlAttribute() {
-        return Storage::disk('public')->url('/uploads/', $this->name);
+        return Storage::disk('public')->url('/uploads/' . $this->name);
     }
 
 }

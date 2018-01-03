@@ -32,9 +32,9 @@ if($post->id) {
             {!! Form::textarea('contenu', $post->content, [
                 'class' => 'form-control',
                 'id' => 'editor',
-                'data-id' => '{{ $post->id }}' ,
-                'data-type' => '{{ get_class($post) }}',
-                'data-url' => '{{ route(\'atachements.store\') }}'
+                'data-id' => $post->id,
+                'data-type' => get_class($post),
+                'data-url' => route('attachments.store')
             ]) !!}
         </div>
 

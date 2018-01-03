@@ -22,8 +22,8 @@ class AttachmentController extends Controller {
      * @return Attachement|JsonResponse
      */
     public function store(AttachementRequest $request) {
-        $type = $request->get('attachable_type');
         $id = $request->get('attachable_id');
+        $type = $request->get('attachable_type');
         $file = $request->file('image');
 
         if (class_exists($type) && method_exists($type, 'attachements')) {

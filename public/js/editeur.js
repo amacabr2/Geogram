@@ -1,4 +1,4 @@
-let textarea = document.querySelector('#editor');
+let textarea = document.querySelector('#editor')
 
 if(window.tinyMCE) {
     tinymce.init({
@@ -6,20 +6,23 @@ if(window.tinyMCE) {
         plugins: 'image,paste',
         paste_data_images: true,
         automatic_uploads: true,
-        images_upload_handler: function (blobinfo, success, failure) {
-            let data = new FormData();
-            data.append('attachable_id', textarea.dataset.id);
-            data.append('attachable_type', textarea.dataset.type);
-            data.append('image', blobinfo.blob(), blobinfo.filename());
-            axios.post(textarea.dataset.url, data)
-                .then(function(res) {
-                    success(res.data.url);
-                })
-                .catch(function (err) {
-                    alert(err.response.statutText);
-                    success('http://placehold.it/300x300');
-                    //failure(err.response.statutText)
-                })
+        images_upload_handler: (blobInfo, success, failure) => {
+            let data = new FormData()
+            data.append('attachable_id', textarea.dataset.id)
+            data.append('attachable_type', textarea.dataset.type)
+            data.append('image', blobInfo.blob(), blobInfo.filename())
+            axios.post(textarea.dataset.url, data, {
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            }).then((res) => {
+                console.log(res.data)
+                success(res.data.url)
+            }).catch((err) => {
+                console.log(err.response)
+                success('http://placehold.it/300x150')
+                failure(err.response.statutText)
+            })
         }
     })
 }

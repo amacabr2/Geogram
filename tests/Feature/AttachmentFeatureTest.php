@@ -55,30 +55,6 @@ class AttachmentFeatureTest extends TestCase {
         $response->assertStatus(200);
     }
 
-    private function callController(array $data = []) {
-        $path = dirname(__DIR__) . '/fixtures/demo.png';
-        $file = new UploadedFile($path, 'demo.png', filesize($path), 'image/jpeg', null, true);
-
-        $user = factory(User::class)->create();
-        $voyage = factory(Voyage::class)->create();
-
-        $post = Post::create([
-            'title' => 'demo',
-            'user_id' => $user->id,
-            'content' => 'demo',
-            'voyage_id' => $voyage->id
-        ]);
-
-        $default = [
-            'name' => 'demo.jpg',
-            'attachable_type' => Post::class,
-            'attachable_id' => $post->id,
-            'image' => $file
-        ];
-
-        return $this->post(route('attachments.store'), array_merge($default, $data));
-    }
-
 //    public function testDeleteAttachmentDeleteFile() {
 //        $response = $this->callController();
 //        $attachment = $response->json();
@@ -129,6 +105,30 @@ class AttachmentFeatureTest extends TestCase {
 //        $this->assertEquals(3, Attachement::count());
 //        $this->assertFileNotExists($this->getFileForAttachment($attachment));
 //    }
+
+    private function callController(array $data = []) {
+        $path = dirname(__DIR__) . '/fixtures/demo.png';
+        $file = new UploadedFile($path, 'demo.png', filesize($path), 'image/jpeg', null, true);
+
+        $user = factory(User::class)->create();
+        $voyage = factory(Voyage::class)->create();
+
+        $post = Post::create([
+            'title' => 'demo',
+            'user_id' => $user->id,
+            'content' => 'demo',
+            'voyage_id' => $voyage->id
+        ]);
+
+        $default = [
+            'name' => 'demo.jpg',
+            'attachable_type' => Post::class,
+            'attachable_id' => $post->id,
+            'image' => $file
+        ];
+
+        return $this->post(route('attachments.store'), array_merge($default, $data));
+    }
 
     private function getFileForAttachment($attachment) {
         return dirname(__DIR__) . '/fixtures/uploads/' . $attachment['name'];
