@@ -66,7 +66,9 @@
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-primary" href="{{route('voyage.delete', $voyage)}}" style="width: 100%">Suppression</a>
+                            {!! Form::open(['method' => 'delete', 'url' => action('VoyagesController@delete', $voyage), 'style' => 'width: 100%']) !!}
+                                <button class="btn btn-primary" style="width: 100%" type="submit" value="Supprimer">Supprimer le voyage</button>
+                            {!! Form::close() !!}
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </div>
                     </div>

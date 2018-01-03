@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create', 'VoyagesController@create')->name('voyage.create');
         Route::get('/edit/{id}', 'VoyagesController@edit')->name('voyage.edit')->where('id', '[0-9]+');
         Route::get('/show/{id}', 'VoyagesController@show')->name('voyage.show')->where('id', '[0-9]+');
-        Route::get('/delete/{id}', 'VoyagesController@delete')->name('voyage.delete')->where('id', '[0-9]+');
+        Route::delete('/delete/{id}', 'VoyagesController@delete')->name('voyage.delete')->where('id', '[0-9]+');
     });
 
     Route::group(['prefix' => 'posts'], function () {
@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create', 'PostsController@create')->name('post.create');
         Route::get('/edit/{id}', 'PostsController@edit')->name('post.edit')->where('id', '[0-9]+');
         Route::get('/show/{id}', 'PostsController@show')->name('post.show')->where('id', '[0-9]+');
-        Route::get('/delete/{id}', 'PostsController@delete')->name('post.delete')->where('id', '[0-9]+');
+        Route::delete('/delete/{id}', 'PostsController@delete')->name('post.delete')->where('id', '[0-9]+');
     });
 
     Route::post('/attachements', 'AttachementController@store')->name('attachements.store');

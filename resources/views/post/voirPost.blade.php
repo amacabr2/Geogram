@@ -59,7 +59,10 @@
                                 <div class="commentaire" style="border-bottom: solid 2px #919191">
                                     <b>
                                         {{ $commentaire->user->pseudo }}
-                                        <i class="fa fa-times confirmModalLink" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
+                                        <div class="pull-right">
+                                            <i class="fa fa-times confirmModalLink" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
+                                            <i class="fa fa-times" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
+                                        </div>
                                     </b>
                                     <p> {{ $commentaire->content }} </p>
                                 </div>
@@ -105,11 +108,13 @@
                     <div class="modal-body">
                         <p>
                             Voulez vous vraiment supprimer cet article ? <br/>
-                            Les commentaires correspodants à cet article seront supprimés avec.
+                            Les commentaires correspondants à cet article seront supprimés avec.
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-primary" href="{{route('post.delete', $post)}}" style="width: 100%">Suppression</a>
+                        {!! Form::open(['method' => 'delete', 'url' => action('PostsController@delete', $post), 'style' => 'width: 100%']) !!}
+                            <button class="btn btn-primary" style="width: 100%" type="submit" value="Supprimer">Supprimer l'article</button>
+                        {!! Form::close() !!}
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                     </div>
                 </div>
