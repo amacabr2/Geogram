@@ -20,16 +20,15 @@ trait HelperSeeder {
      *
      * @param int $i
      * @param Collection $users
-     * @param string $type
      * @return int
      */
-    private function choixAbonnement(int $i, Collection $users, string $type): int {
+    private function choixAbonnement(int $i, Collection $users): int {
         if ($i < 100) {
-            return ($i + ($type === "abonne" ? 1 : 2)) % sizeof($users);
+            return ($i + 1) % sizeof($users);
         } else if ($i >= 100 && $i < 200) {
-            return ($i + ($type === "abonne" ? 2 : 3)) % sizeof($users);
+            return ($i + 2) % sizeof($users);
         } else {
-            return ($i + ($type === "abonne" ? 3 : 4)) % sizeof($users);
+            return ($i + 3) % sizeof($users);
         }
     }
 }

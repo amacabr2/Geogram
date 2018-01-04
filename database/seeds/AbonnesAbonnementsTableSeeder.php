@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
  * Time: 13:52
  */
 
-class AbonnesTableSeeder extends Seeder {
+class AbonnesAbonnementsTableSeeder extends Seeder {
 
     use HelperSeeder;
 
@@ -20,13 +20,21 @@ class AbonnesTableSeeder extends Seeder {
      */
     public function run() {
         DB::table('abonnes')->delete();
-
+        DB::table('abonnements')->delete();
         $users = User::all();
 
         for ($i = 0; $i < 300; $i++) {
+            $id1 = $users[$i % sizeof($users)]->id;
+            $id2 = $users[$this->choixAbonnement($i, $users)]->id;
+
             DB::table('abonnes')->insert([
-                'user1_id' => $users[$i % sizeof($users)]->id,
-                'user2_id' => $users[$this->choixAbonnement($i, $users, "abonne")]->id
+                'user1_id' => $id1,
+                'user2_id' => $id2
+            ]);
+
+            DB::table('abonnements')->insert([
+                'user1_id' => $id2,
+                'user2_id' => $id1
             ]);
         }
     }
