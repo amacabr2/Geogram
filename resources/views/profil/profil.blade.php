@@ -38,7 +38,10 @@
                 <div class="button-container">
                     @if(Auth::id() != $user->id)
                         @if($isAbonne)
-                            <a href="{{ route('profil.delete-abonnement', ['id' => $user->id]) }}" class="btn btn-primary btn-round btn-lg">Se désabonner</a>
+                            {!! Form::open(['method' => 'delete', 'route' => 'profil.delete-abonnement', 'style' => 'display: inline']) !!}
+                                <input type="hidden" name="abonnement" value="{{ $user->id }}">
+                                <button class="btn btn-primary btn-round btn-lg" type="submit">Se désabonner</button>
+                            {!! Form::close() !!}
                         @else
                             <a href="{{ route('profil.new-abonnement', ['id' => $user->id]) }}" class="btn btn-primary btn-round btn-lg">S'abonner</a>
                         @endif
@@ -65,6 +68,26 @@
                         </a>
                     @endif
                 </div>
+
+                @if(session('success'))
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                @if(session('danger'))
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger">
+                                {{ session('danger') }}
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
                 @if (Auth::id() == $user->id )
                     @include('profil.includes.administration')

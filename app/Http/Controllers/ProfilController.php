@@ -9,6 +9,7 @@ use App\User;
 use App\Voyage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfilController extends Controller {
 
@@ -67,35 +68,63 @@ class ProfilController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
     public function addAbonnement(int $id) {
-        $abonnement = new Abonnement();
-        $abonnement->user1_id = Auth::id();
-        $abonnement->user2_id = $id;
-        $abonnement->save();
+        DB::beginTransaction();
 
-        $abonne = new Abonne();
-        $abonne->user1_id = $id;
-        $abonne->user2_id = Auth::id();
-        $abonne->save();
+        try {
+            $abonnement = new Abonnement();
+            $abonnement->user1_id = Auth::id();
+            $abonnement->user2_id = $id;
+            $abonnement->save();
 
-        return redirect()->route('profil', ['id' => $id])->with('success', 'Vous êtes maitenant abonnez à cette personne.');
+            $abonne = new Abonne();
+            $abonne->user1_id = $id;
+            $abonne->user2_id = Auth::id();
+            $abonne->save();
+
+            $good = true;
+            DB::commit();
+        } catch (\Exception $e) {
+            $good = false;
+            DB::rollback();
+        }
+
+        if ($good) {
+            return redirect()->route('profil', ['id' => $id])->with('success', 'Vous êtes maintenant abonné de cette personne.');
+        } else {
+            return redirect()->route('profil', ['id' => $id])->with('danger', 'Une erreur est survenue, veuillez recommencer un peu plus tard.');
+        }
     }
 
     /**
      * Permet de se désabonner
      *
-     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteAbonnement(int $id) {
-        Abonnement::where('user1_id', Auth::id())
-            ->where('user2_id', $id)
-            ->delete();
+    public function deleteAbonnement(Request $request) {
+        $id = $request->get('abonnement');
+        DB::beginTransaction();
 
-        Abonne::where('user1_id',$id)
-            ->where('user2_id',  Auth::id())
-            ->delete();
+        try {
+            Abonnement::where('user1_id', Auth::id())
+                ->where('user2_id', $id)
+                ->delete();
 
-        return redirect()->route('profil', ['id' => $id])->with('success', 'Vous êtes maintenant désabonné de cette personne.');
+            Abonne::where('user1_id',$id)
+                ->where('user2_id',  Auth::id())
+                ->delete();
+
+            $good = true;
+            DB::commit();
+        } catch (\Exception $e) {
+            $good = false;
+            DB::rollback();
+        }
+
+        if ($good) {
+            return redirect()->route('profil', ['id' => $id])->with('success', 'Vous êtes maintenant désabonné de cette personne.');
+        } else {
+            return redirect()->route('profil', ['id' => $id])->with('danger', 'Une erreur est survenue, veuillez recommencer un peu plus tard.');
+        }
     }
 
     /**
