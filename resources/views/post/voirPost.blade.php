@@ -151,12 +151,13 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modification du commentaire </h5>
+                        <h5 class="modal-title">Modification du commentaire</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+                        <input type="text" name="bookId" value=""/>
                         {!! Form::open(['method' => 'put', 'route' => ['comment.update', $commentaire->id, $post->id], 'class' => 'form-horizontal', 'files' => true]) !!}
                         @if($errors->any())
                             <div class="alert alert-danger">
@@ -208,7 +209,7 @@
         //modifier commentaire
         $('#editCommentModal').on('show.bs.modal', function(e) {
             //get data-id attribute of the clicked element
-            let com = $(e.relatedTarget).data('commentaire');
+            let com = $(e.relatedTarget).data('commentaire ');
             //populate the textbox
             $(e.currentTarget).find('input[name="bookId"]').val(com);
         });
