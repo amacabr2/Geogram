@@ -35,6 +35,10 @@
     display: block;
 }
 
+.container-margin-top {
+    margin-top: 1em;
+}
+
 #map {
     height: 400px;
     width: 100%;

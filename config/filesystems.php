@@ -50,7 +50,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => public_path(),
+            'root' => env('APP_ENV') == 'testing' ? base_path('tests/fixtures') :  public_path(),
             'url' => env('APP_URL'),
             'visibility' => 'public',
         ],

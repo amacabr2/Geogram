@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container container-margin-top">
     <h3 class="title">A propos</h3>
 
     <div class="row">

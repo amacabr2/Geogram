@@ -49,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delete/{id}', 'PostsController@delete')->name('post.delete')->where('id', '[0-9]+');
     });
 
-    Route::post('/attachements', 'AttachementController@store')->name('attachements.store');
+    Route::post('/attachments', 'AttachmentController@store')->name('attachments.store');
 
     Route::group(['prefix' => 'comment'], function () {
         Route::post('/{id}', 'CommentairesController@store')->name('comment.store')->where('id', '[0-9]+');

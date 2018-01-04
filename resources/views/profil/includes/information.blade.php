@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 2em;">
+<div class="container container-margin-top">
     @if(session('success'))
         <div class="row">
             <div class="col-md-12">

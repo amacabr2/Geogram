@@ -1,4 +1,4 @@
-<section class="container" style="margin-top: 2em">
+<section class="container container-margin-top">
     @if($friends != null)
         @forelse(array_chunk($friends->all(), 3) as $row)
             <div class="row">
