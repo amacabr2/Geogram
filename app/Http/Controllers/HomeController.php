@@ -21,7 +21,7 @@ class HomeController extends Controller
             ->join('voyages', 'voyages.id', '=', 'posts.voyage_id')
             ->select('*')
             ->where('abonnements.user1_id', '=', Auth::user()->id)
-            ->paginate(1);
+            ->paginate(10);
         return view('home', compact('posts'));
     }
 }

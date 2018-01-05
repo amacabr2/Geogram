@@ -48,7 +48,7 @@
 
                 <div class="row" id="article" style="border-bottom: #f76234 solid 3px; margin-bottom: 2em; padding-bottom: 1em">
                     <div class="col-md-12">
-                        {{ $post->content }}
+                        {!! $post->content !!}
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@
                                                 <i class="fa fa-times confirmModalLink" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
                                             @endif
                                             @if(Auth::user()->id == $commentaire->user_id)
-                                                <i class="fa fa-pencil" data-toggle="modal" data-target="#editCommentModal" data-commentaire="{{ $commentaire }}"></i>
+                                                <i class="fa fa-pencil" data-toggle="modal" data-target="#editCommentModal" data-commentaire-id="{{ $commentaire->id }}" data-commentaire-content="{{ $commentaire->content }}"></i>
                                             @endif
                                         </div>
                                     </b>
@@ -161,10 +161,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="bookId" value=""/>
-                        {!! Form::open(['method' => 'put', 'route' => ['comment.update', $commentaire->id, $post->id], 'class' => 'form-horizontal', 'files' => true]) !!}
-                        @if($errors->any())
-                            <div class="alert alert-danger">
+                        <?php
+                            preg_match("/<p[^>]*>(.*)<\/p>/isU", '<p id="comId"></p>', $match);
+                            $idCommentaire = $match[0];
+                            echo $idCommentaire;
+                        ?>
+                        {!! Form::open(['id' => 'comForm', 'method' => 'put', 'route' => ['comment.update', $commentaire->id, $post->id], 'class' => 'form-horizontal', 'files' => true]) !!}
+                            @if($errors->any())
+                            <div class='alert alert-danger'>
                                 <ul>
                                     @foreach($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -174,11 +178,11 @@
                         @endif
                         <div class="form-group">
                             {!! Form::label('contenu', 'Votre commentaire') !!}
-                            {!! Form::textarea('contenu', $commentaire->content , ['class' => 'form-control']) !!}
+                            {!! Form::textarea('contenu', '' , ['class' => 'form-control', 'id' => 'comContent']) !!}
                         </div>
                     </div>
                     <div class="modal-footer">
-                        {!! Form::submit('Envoyer', ['class' => 'btn btn-primary', 'style' => 'width: 100%']) !!}
+                        {!! Form::submit('Modifier', ['class' => 'btn btn-primary', 'style' => 'width: 100%']) !!}
                         {!! Form::close() !!}
                         <button type="button" class="btn btn-secondary" id="confirmModalNo" data-dismiss="modal">Annuler</button>
                     </div>
@@ -212,10 +216,10 @@
 
         //modifier commentaire
         $('#editCommentModal').on('show.bs.modal', function(e) {
-            //get data-id attribute of the clicked element
-            let com = $(e.relatedTarget).data('commentaire ');
-            //populate the textbox
-            $(e.currentTarget).find('input[name="bookId"]').val(com);
+            let comId = $(e.relatedTarget).data('commentaire-id');
+            let comContent = $(e.relatedTarget).data('commentaire-content');
+            $(e.currentTarget).find('p[id="comId"]').text(comId);
+            $("#comContent").html(comContent);
         });
 
         //barre navigation
