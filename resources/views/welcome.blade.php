@@ -127,7 +127,7 @@
             </div>
         </section>
 
-        <section class="section section-contact-us text-center">
+        <section id="contact" class="section section-contact-us text-center">
             <div class="container">
                 <h2 class="title">Contactez-nous</h2>
                 <p class="description">Si t'as des questions, n'hésites pas ?</p>
@@ -164,4 +164,16 @@
         </section>
     </section>
 
+@endsection
+
+@section('javascript')
+    @if($errors->any())
+        <script type="text/javascript">
+            (function($){
+                $('html, body').animate({
+                    scrollTop: $('#contact').offset().top
+                }, 1000)
+            })(jQuery);
+        </script>
+    @endif
 @endsection
