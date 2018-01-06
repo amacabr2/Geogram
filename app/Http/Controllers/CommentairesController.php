@@ -21,8 +21,8 @@ class CommentairesController extends Controller {
         return redirect(route('post.show', $id));
     }
 
-    public function delete(int $id, int $post) {
-        $commentaire = Commentaire::findOrFail($id);
+    public function delete(Request $request, int $post) {
+        $commentaire = Commentaire::findOrFail($request->get("idCommentaire"));
         $commentaire->delete();
         return redirect(route('post.show', $post));
     }

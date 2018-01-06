@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}/abonnements/', 'ProfilController@abonnements')->name('profil.abonnements')->where(['id' => '[0-9]+']);
         Route::get('/{id}/abonnes/', 'ProfilController@abonnes')->name('profil.abonnes')->where(['id' => '[0-9]+']);
         Route::get('/{id}/new-abonnement', 'ProfilController@addAbonnement')->name('profil.new-abonnement')->where(['id' => '[0-9]+']);
-        Route::delete('/delete-abonnement', 'ProfilController@deleteAbonnement')->name('profil.delete-abonnement')->where(['id' => '[0-9]+']);
+        Route::delete('/', 'ProfilController@deleteAbonnement')->name('profil.delete-abonnement');
     });
 
 
@@ -36,8 +36,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{id}', 'VoyagesController@update')->name('voyage.update')->where('id', '[0-9]+');
         Route::get('/create', 'VoyagesController@create')->name('voyage.create');
         Route::get('/edit/{id}', 'VoyagesController@edit')->name('voyage.edit')->where('id', '[0-9]+');
-        Route::get('/show/{id}', 'VoyagesController@show')->name('voyage.show')->where('id', '[0-9]+');
-        Route::delete('/delete/{id}', 'VoyagesController@delete')->name('voyage.delete')->where('id', '[0-9]+');
+        Route::get('/{id}', 'VoyagesController@show')->name('voyage.show')->where('id', '[0-9]+');
+        Route::delete('/', 'VoyagesController@delete')->name('voyage.delete');
     });
 
     Route::group(['prefix' => 'posts'], function () {
@@ -45,15 +45,15 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{id}', 'PostsController@update')->name('post.update')->where('id', '[0-9]+');
         Route::get('/create', 'PostsController@create')->name('post.create');
         Route::get('/edit/{id}', 'PostsController@edit')->name('post.edit')->where('id', '[0-9]+');
-        Route::get('/show/{id}', 'PostsController@show')->name('post.show')->where('id', '[0-9]+');
-        Route::delete('/delete/{id}', 'PostsController@delete')->name('post.delete')->where('id', '[0-9]+');
+        Route::get('/{id}', 'PostsController@show')->name('post.show')->where('id', '[0-9]+');
+        Route::delete('/', 'PostsController@delete')->name('post.delete');
     });
 
     Route::post('/attachments', 'AttachmentController@store')->name('attachments.store');
 
     Route::group(['prefix' => 'comment'], function () {
         Route::post('/{id}', 'CommentairesController@store')->name('comment.store')->where('id', '[0-9]+');
-        Route::get('/delete/{id}/{post}', 'CommentairesController@delete')->name('comment.delete')->where('id', '[0-9]+')->where('post', '[0-9]+');
+        Route::delete('/{post}', 'CommentairesController@delete')->name('comment.delete')->where('post', '[0-9]+');
         Route::put('/{post}', 'CommentairesController@update')->name('comment.update')->where('post', '[0-9]+');
     });
 

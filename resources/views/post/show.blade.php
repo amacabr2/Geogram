@@ -65,7 +65,7 @@
                                         {{ $commentaire->user->pseudo }}
                                         <div class="pull-right">
                                             @if(Auth::user()->id == $post->user_id or Auth::user()->id == $commentaire->user_id)
-                                                <i class="fa fa-times confirmModalLink" data-toggle="modal" data-target="#deleteCommentModal" href="{{route('comment.delete', [$commentaire->id, $post->id] )}}"></i>
+                                                <i class="fa fa-times" data-toggle="modal" data-target="#deleteCommentModal" data-commentaire-id="{{ $commentaire->id }}"></i>
                                             @endif
                                             @if(Auth::user()->id == $commentaire->user_id)
                                                 <i class="fa fa-pencil" data-toggle="modal" data-target="#editCommentModal" data-commentaire-id="{{ $commentaire->id }}" data-commentaire-content="{{ $commentaire->content }}"></i>
@@ -120,7 +120,8 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        {!! Form::open(['method' => 'delete', 'url' => action('PostsController@delete', $post), 'style' => 'width: 100%']) !!}
+                        {!! Form::open(['method' => 'delete', 'url' => action('PostsController@delete'), 'style' => 'width: 100%']) !!}
+                            <input name="idPost" type="hidden" value="{{ $post->id }}"/>
                             <button class="btn btn-primary" style="width: 100%" type="submit" value="Supprimer">Supprimer l'article</button>
                         {!! Form::close() !!}
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -144,8 +145,11 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-primary" id="confirmModalYes" style="width: 100%">Suppression</a>
-                        <button type="button" class="btn btn-secondary" id="confirmModalNo" data-dismiss="modal">Annuler</button>
+                        {!! Form::open(['method' => 'delete', 'url' => action('CommentairesController@delete', $post->id), 'style' => 'width: 100%']) !!}
+                            <input name="idCommentaire" type="hidden"/>
+                            <button class="btn btn-primary" style="width: 100%" type="submit" value="Supprimer">Supprimer le commentaire</button>
+                        {!! Form::close() !!}
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                     </div>
                 </div>
             </div>
@@ -195,19 +199,9 @@
     <script type="text/javascript">
 
         //modal suppression commentaire
-        $(document).ready(function() {
-            let theHREF;
-            $(".confirmModalLink").click(function(e) {
-                e.preventDefault();
-                theHREF = $(this).attr("href");
-                $("#deleteCommentModal").modal("show");
-            });
-            $("#confirmModalNo").click(function(e) {
-                $("#deleteCommentModal").modal("hide");
-            });
-            $("#confirmModalYes").click(function(e) {
-                window.location.href = theHREF;
-            });
+        $('#deleteCommentModal').on('show.bs.modal', function(e) {
+            let comId = $(e.relatedTarget).data('commentaire-id');
+            $(e.currentTarget).find('input[name="idCommentaire"]').val(comId);
         });
 
         //modifier commentaire

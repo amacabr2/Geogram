@@ -63,8 +63,8 @@ class PostsController extends Controller {
         return redirect(route('profil', Auth::user()->id))->withSuccess('L\'article à été modifié');
     }
 
-    public function delete(int $id) {
-        $post = Post::findOrFail($id);
+    public function delete(Request $request) {
+        $post = Post::findOrFail($request->get("idPost"));
         $post->delete();
         return redirect(route('profil', Auth::user()->id))->withSuccess('L\'article à été supprimé');
     }

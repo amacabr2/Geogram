@@ -66,7 +66,8 @@
                             </p>
                         </div>
                         <div class="modal-footer">
-                            {!! Form::open(['method' => 'delete', 'url' => action('VoyagesController@delete', $voyage), 'style' => 'width: 100%']) !!}
+                            {!! Form::open(['method' => 'delete', 'url' => action('VoyagesController@delete'), 'style' => 'width: 100%']) !!}
+                                <input name="idVoyage" type="hidden" value="{{ $voyage->id }}"/>
                                 <button class="btn btn-primary" style="width: 100%" type="submit" value="Supprimer">Supprimer le voyage</button>
                             {!! Form::close() !!}
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
