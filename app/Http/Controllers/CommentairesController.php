@@ -27,8 +27,8 @@ class CommentairesController extends Controller {
         return redirect(route('post.show', $post));
     }
 
-    public function update(int $id, int $post, Request $request) {
-        $commentaire = Commentaire::findOrFail($id);
+    public function update(int $post, Request $request) {
+        $commentaire = Commentaire::findOrFail($request->get("idCommentaire"));
         $this->validate($request, [
             'contenu' => 'required'
         ]);

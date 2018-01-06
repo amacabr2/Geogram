@@ -161,12 +161,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <?php
-                            preg_match("/<p[^>]*>(.*)<\/p>/isU", '<p id="comId"></p>', $match);
-                            $idCommentaire = $match[0];
-                            echo $idCommentaire;
-                        ?>
-                        {!! Form::open(['id' => 'comForm', 'method' => 'put', 'route' => ['comment.update', $commentaire->id, $post->id], 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::open(['id' => 'comForm', 'method' => 'put', 'route' => ['comment.update', $post->id], 'class' => 'form-horizontal', 'files' => true]) !!}
                             @if($errors->any())
                             <div class='alert alert-danger'>
                                 <ul>
@@ -176,6 +171,7 @@
                                 </ul>
                             </div>
                         @endif
+                        <input name="idCommentaire" type="hidden"/>
                         <div class="form-group">
                             {!! Form::label('contenu', 'Votre commentaire') !!}
                             {!! Form::textarea('contenu', '' , ['class' => 'form-control', 'id' => 'comContent']) !!}
@@ -218,7 +214,7 @@
         $('#editCommentModal').on('show.bs.modal', function(e) {
             let comId = $(e.relatedTarget).data('commentaire-id');
             let comContent = $(e.relatedTarget).data('commentaire-content');
-            $(e.currentTarget).find('p[id="comId"]').text(comId);
+            $(e.currentTarget).find('input[name="idCommentaire"]').val(comId);
             $("#comContent").html(comContent);
         });
 
