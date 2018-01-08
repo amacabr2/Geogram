@@ -263,7 +263,7 @@
                                    </div>
 
                                    <div class="form-group{{ $errors->has('lienInstagram') ? ' has-error' : '' }}">
-                                       <label for="lienInstagram" class="col-md-4 control-label">Line Instagram</label>
+                                       <label for="lienInstagram" class="col-md-4 control-label">Lien Instagram</label>
 
                                        <div class="col-md-12">
                                            <input id="lienInstagram" type="text"
