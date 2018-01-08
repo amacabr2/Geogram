@@ -282,7 +282,7 @@
                                        <label for="lienTwitter" class="col-md-4 control-label">Lien Twitter</label>
 
                                        <div class="col-md-12">
-                                           <input id="job" type="text"
+                                           <input id="lienTwitter" type="text"
                                                   class="form-control @if($errors->has('lienTwitter')) {{ "is-invalid" }}@endif"
                                                   name="lienTwitter" value="{{ old('lienTwitter') }}">
 

@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="row">
-                    <p>Pays visité : {{ $post->voyage->state }}.</p>
+                    <p>Pays visité : <a href="{{ route('voyage.show', $post->voyage->id) }}">{{ $post->voyage->state }}</a>.</p>
                 </div>
 
                 <div class="row">
