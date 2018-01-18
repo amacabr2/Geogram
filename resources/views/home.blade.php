@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="starter-template text-center">
-                            <h1>Votre fil d'actulité</h1>
+                            <h1>Votre fil d'actulités</h1>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                         @empty
-                            <p>Votre file d'actualité est vide. Abonnez-vous à des utilisateurs pour voir leurs articles.</p>
+                            <p>Votre fil d'actualités est vide. Abonnez-vous à des utilisateurs pour voir leurs articles.</p>
                         @endforelse
 
                         <div class="row">
